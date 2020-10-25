@@ -1,8 +1,9 @@
 # e_Masker
-Kelompok N
-Khahlil Gilbran         - 182410103048
-Abizar Nazha Rizky      - 182410103049
-Muhammad Indefandia K.  - 182410103072
+Kelompok N.
+
+1. Khahlil Gilbran         - 182410103048
+2. Abizar Nazha Rizky      - 182410103049
+3. Muhammad Indefandia K.  - 182410103072
 
 A new Flutter project.
 
