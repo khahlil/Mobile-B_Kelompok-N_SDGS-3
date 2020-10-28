@@ -1,4 +1,14 @@
 # e_Masker
+e_Masker, solusi pengingat ganti masker.
+
+Fitur - fitur:
+- Menampilkan info tentang pentingnya masker di era PSBB.
+- Pencatatan berdasarkan banyak masker yang dimiliki :
+    - Dari total masker yang dimiliki, bisa survive selama berapa hari.
+    - Timer mundur sejak masker dipakai sampai berapa lama masker bisa dipakai.
+    - Hitung total masker yang pernah dipakai semenjak input total masker yang dimiliki.
+    - Total waktu melakukan survival selama menggunakan masker.
+
 Kelompok N.
 
 1. Khahlil Gilbran         - 182410103048
@@ -9,13 +19,5 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Pembuatan Halaman Awal (Boarding Screen), Halaman login, dan home.
+- Pembuatan controller yang digunakan untuk mengkoneksikan setiap halamannya.
