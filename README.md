@@ -15,6 +15,8 @@ Kelompok N.
 2. Abizar Nazha Rizky      - 182410103049
 3. Muhammad Indefandia K.  - 182410103072
 
+A new Flutter project.
+
 ## Getting Started
 
 - Pembuatan Halaman Awal (Boarding Screen), Halaman login, dan home.
