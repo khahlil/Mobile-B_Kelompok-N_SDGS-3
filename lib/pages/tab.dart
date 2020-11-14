@@ -1,5 +1,5 @@
-import 'package:e_Masker/pages/login.dart';
-import 'package:e_Masker/pages/opening.dart';
+import 'package:e_Masker/pages/welcome.dart';
+import 'package:e_Masker/pages/openingscreen.dart';
 import 'package:e_Masker/pages/timer.dart';
 import 'package:flutter/material.dart';
 
@@ -23,10 +23,7 @@ class _TabPagesState extends State<TabPages> {
           bottomNavigationBar: menu(),
           body: TabBarView(
             children: [
-              // Container(child: Icon(Icons.directions_car)),
-              // Container(child: Icon(Icons.directions_transit)),
-              // Container(child: Icon(Icons.directions_bike)),
-              TimerPages(), LoginPages(), OpeningPages()
+              TimerPages(), WelcomePages(), OpeningPages()
             ],
           ),
         ),
