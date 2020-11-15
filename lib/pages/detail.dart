@@ -26,6 +26,7 @@ class DetailPages extends StatelessWidget {
               child: Column(
                 children: [
                   Text(content1, style: Theme.of(context).textTheme.bodyText2),
+                  SizedBox( height: 20),
                   Text(content2, style: Theme.of(context).textTheme.bodyText2),
                 ],
               )),

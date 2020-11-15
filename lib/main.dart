@@ -24,5 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// list dalam list untuk konten halaman detali
