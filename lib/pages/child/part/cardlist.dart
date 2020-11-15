@@ -14,13 +14,11 @@ class CardList extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-              child: Image.asset(image, fit: BoxFit.cover)
-            ),
+              child: Image.asset(image, fit: BoxFit.cover)),
             ListTile(title: Text(title)),
             Container(
               padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 30.0),
-              child: Text(subtitle, style: TextStyle(color: Colors.black.withOpacity(0.6))),
-            )
+              child: Text(subtitle, style: TextStyle(color: Colors.black))),
           ],
       ),
     );

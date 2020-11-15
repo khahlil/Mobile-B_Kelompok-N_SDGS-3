@@ -2,10 +2,10 @@
 e_Masker, solusi pengingat ganti masker.
 
 Fitur - fitur:
-- Menampilkan info tentang pentingnya masker di era PSBB.
+- Menampilkan info tentang penting nya masker di era PSBB.
 - Pencatatan berdasarkan banyak masker yang dimiliki :
-- Timer mundur sejak masker dipakai sampai berapa lama masker bisa dipakai.
-- Hitung total masker yang pernah dipakai.
+- Timer mundur sejak masker di pakai sampai berapa lama masker dapat di pakai.
+- Hitung total masker yang pernah di pakai.
 - Total waktu penggunaan masker.
 
 ## Kelompok N
