@@ -17,7 +17,7 @@ class DetailPages extends StatelessWidget {
         
         children: [
           Container(
-              padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 4.0),
+              padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 5.0),
               child: Image.asset(image, fit: BoxFit.cover)),
           Container(
               padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 4.0),
