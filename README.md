@@ -1,5 +1,7 @@
 # e_Masker
 e_Masker, solusi pengingat ganti masker.
+-Tujuan  : aplikasi ini  berfugsi sebagai pengingat user kapan harus mengganti masker yang digunakan, terutama pada masa pandemi covid-19.
+-Manfaat : manfaat dari aplikasi ini yaitu bisa mengurangi penyebaran virus covid-19, karena di negara kita jumlah korban kian meningkat. Maka dengan adanya aplikasi ini, negara kita terbebas dari pandemi dengan pengingat kapan harus mengganti masker, untuk mencegah penyebaran virus covid-19 supaya tidak tambah parah.
 
 Fitur - fitur:
 - Menampilkan info tentang penting nya masker di era PSBB.
