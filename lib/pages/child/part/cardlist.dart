@@ -7,9 +7,13 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 4,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(6.0, 5.0, 6.0, 6.0),
+      child: Card(
+        elevation: 10,
         clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
             Container(
@@ -20,6 +24,7 @@ class CardList extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 30.0),
               child: Text(subtitle, style: TextStyle(color: Colors.black))),
           ],
+        ),
       ),
     );
   }

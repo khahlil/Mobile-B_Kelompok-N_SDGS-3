@@ -20,7 +20,7 @@ class _ListPagesState extends State<ListPages> {
       itemCount: mySLides.length,
       itemBuilder: (context, int i) {
         return InkWell(
-          splashColor: Colors.blueAccent,
+          splashColor: Colors.blueAccent[200],
           onTap: () {
             Router.changePages(
                 context,
