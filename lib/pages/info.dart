@@ -37,20 +37,12 @@ class InfoPages extends StatelessWidget {
               title: Text("Abizhar Nazha"),
               trailing: Text('182410103049'),
             ),
-            ListTile(  
-              leading: Icon(
-                Icons.looks_3,
-                color: Colors.blueGrey,
-              ),
-              title: Text("Rakta Mega"),
-              trailing: Text('182410103063'),
-            ),
             ListTile(
               leading: Icon(
                 Icons.looks_4,
                 color: Colors.blueGrey,
               ),
-              title: Text("Indefandia King"),
+              title: Text("M. Indefandia K"),
               trailing: Text('182410103072'),
             )
           ],

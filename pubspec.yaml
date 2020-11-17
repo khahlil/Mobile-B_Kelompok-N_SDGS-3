@@ -1,5 +1,5 @@
 name: e_Masker
-description: A new Flutter project.
+description: Keep Sage and Helas.
 
 version: 1.0.0+1
 
@@ -16,17 +16,12 @@ dependencies:
   # flutter_swiper: any
   # animations: ^1.1.2
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
 flutter_icons:
   image_path: "assets/icons/icon.png" 
   android: true
   ios: true
 
 flutter:
-
   uses-material-design: true
 
   assets:
