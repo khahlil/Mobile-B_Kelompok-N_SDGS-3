@@ -27,7 +27,8 @@ class _ListPagesState extends State<ListPages> {
                 DetailPages(
                     image: mySLides[i].image,
                     title: mySLides[i].title,
-                    content: mySLides[i].content));
+                    content1: mySLides[i].content1,
+                    content2: mySLides[i].content2));
           },
           child: CardList(
             image: mySLides[i].image,

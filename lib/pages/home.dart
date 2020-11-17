@@ -13,7 +13,10 @@ class _HomePagesState extends State<HomePages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Aplikasi e-Masker')),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Aplikasi e-Masker')
+      ),
       
       drawer: Drawer(
         child: ListView(

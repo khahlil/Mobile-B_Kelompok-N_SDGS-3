@@ -15,17 +15,9 @@ class OpeningList extends StatelessWidget {
         children: <Widget>[
           Image.asset(imagePath),
           SizedBox( height: 40),
-          Text(
-            title, 
-            textAlign: TextAlign.center,
-            style: TextStyle( fontWeight: FontWeight.w500, fontSize: 20),
-            ),
+          Text(title, style: Theme.of(context).textTheme.subtitle1),
           SizedBox( height: 20),
-          Text(
-            desc,
-            textAlign: TextAlign.center,
-            style: TextStyle( fontWeight: FontWeight.w500, fontSize: 14)
-            )
+          Text(desc, style: Theme.of(context).textTheme.bodyText2),
         ],
       ),
     );

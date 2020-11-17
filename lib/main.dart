@@ -1,4 +1,5 @@
-import 'package:e_Masker/pages/launcher.dart';
+import 'package:e_Masker/control/style.dart';
+import 'package:e_Masker/pages/openingscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "e-Masker",
-      home: new LauncherPage(),
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
+      home: OpeningPages(),
+      theme: ThemeData(
+          appBarTheme:
+              AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
+          textTheme:
+              TextTheme(subtitle1: TitleTextStyle, bodyText2: Body1TextStyle)),
     );
   }
 }
