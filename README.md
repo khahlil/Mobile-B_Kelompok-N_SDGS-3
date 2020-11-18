@@ -27,6 +27,12 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 1. Pembuatan Boarding Screen, Welcome Screen, dan Halaman Home.
 2. Pembuatan Route, Model, Halaman Detail, Halaman Info, dan Launcher Icons.
 
+## Progress UTS
+
+[![Watch the video](https://i.ytimg.com/vi_webp/HqUvtDraIR0/maxresdefault.webp)](https://youtu.be/HqUvtDraIR0)
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 ## [Flutter version 1.20.4 Stable channel](https://flutter.dev/docs/development/tools/sdk/releases)
 
 This project is a starting point for a Flutter application.
