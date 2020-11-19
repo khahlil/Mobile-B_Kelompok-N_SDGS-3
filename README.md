@@ -29,7 +29,7 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 
 ## Progress UTS
 
-[![Watch the video](https://i.ytimg.com/vi_webp/KrTFPYucPIA/maxresdefault.webp)](https://youtu.be/KrTFPYucPIA)
+[![Watch the video](https://i.ytimg.com/vi_webp/F1R-t0ypAnY/maxresdefault.webp)](https://youtu.be/F1R-t0ypAnY)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
