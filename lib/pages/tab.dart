@@ -1,3 +1,4 @@
+import 'package:e_Masker/control/style.dart';
 import 'package:e_Masker/pages/welcome.dart';
 import 'package:e_Masker/pages/openingscreen.dart';
 import 'package:e_Masker/pages/timer.dart';
@@ -13,12 +14,22 @@ class _TabPagesState extends State<TabPages> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "e-Masker",
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          textTheme: TextTheme(
+            headline6: AppBarTextStyle)),
+        textTheme: TextTheme(
+          subtitle1: TitleTextStyle,
+          bodyText2: Body1TextStyle)
+      ),
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xFF3F5AA6),
-            title: Text("Home ver 2"),
+            // backgroundColor: Color(0xFF3F5AA6),
+            title: Text("Timer"),
           ),
           bottomNavigationBar: menu(),
           body: TabBarView(
@@ -33,7 +44,7 @@ class _TabPagesState extends State<TabPages> {
 
   Widget menu() {
     return Container(
-      color: Color(0xFF3F5AA6),
+      // color: Color(0xFF3F5AA6),
       child: TabBar(
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white70,
@@ -41,16 +52,16 @@ class _TabPagesState extends State<TabPages> {
         indicatorPadding: EdgeInsets.all(5.0),
         indicatorColor: Colors.blue,
         tabs: [
-          Tab(
-            text: "Transactions",
+          Tab(  //...page timer history
+            // text: "Transactions",
             icon: Icon(Icons.euro_symbol),
           ),
-          Tab(
-            text: "Bills",
+          Tab(  //...page timer count
+            // text: "Bills",
             icon: Icon(Icons.assignment),
           ),
-          Tab(
-            text: "Balance",
+          Tab(  //...page input total masker
+            // text: "Balance",
             icon: Icon(Icons.account_balance_wallet),
           )
         ],

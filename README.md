@@ -26,6 +26,8 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 
 1. Pembuatan Boarding Screen, Welcome Screen, dan Halaman Home.
 2. Pembuatan Route, Model, Halaman Detail, Halaman Info, dan Launcher Icons.
+3. Pembuatan Input masker, Timer history, Timer count.
+<!-- 4. Penambahan Animation. -->
 
 ## Progress UTS
 
