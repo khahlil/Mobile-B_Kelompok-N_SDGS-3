@@ -1,6 +1,7 @@
 import 'package:e_Masker/control/router.dart';
 import 'package:e_Masker/pages/child/list.dart';
 import 'package:e_Masker/pages/info.dart';
+import 'package:e_Masker/pages/tab.dart';
 import 'package:e_Masker/pages/timer.dart';
 import 'package:flutter/material.dart';
 
@@ -13,11 +14,7 @@ class _HomePagesState extends State<HomePages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Aplikasi e-Masker')
-      ),
-      
+      appBar: AppBar(centerTitle: true, title: Text('Aplikasi e-Masker')),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -51,8 +48,19 @@ class _HomePagesState extends State<HomePages> {
           ],
         ),
       ),
-      
       body: Center(child: ListPages()),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 10.0),
+        child: FloatingActionButton.extended(
+          elevation: 4.0,
+          icon: const Icon(Icons.timer),
+          label: const Text('Timer History'),
+          onPressed: () {
+            Router.changePage(context, TabPages());
+          },
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

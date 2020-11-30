@@ -29,23 +29,6 @@ class _WelcomePagesState extends State<WelcomePages> {
       child: Image.asset('assets/images/logo-copy.png'),
     );
 
-    // final toHome = Padding(
-    //   padding: EdgeInsets.symmetric(vertical: 16.0),
-    //   child: Material(
-    //     shadowColor: Colors.lightBlueAccent.shade100,
-    //     child: MaterialButton(
-    //       minWidth: 200.0,
-    //       height: 42.0,
-    //       color: Colors.lightBlueAccent,
-    //       child:
-    //           Text('Selamat Datang !', style: TextStyle(color: Colors.white)),
-    //       onPressed: () {
-    //         Router.changePage(context, HomePages());
-    //       },
-    //     ),
-    //   ),
-    // );
-
     final toHome = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Container(
