@@ -1,5 +1,5 @@
 import 'package:e_Masker/control/style.dart';
-import 'package:e_Masker/pages/timer.dart';
+import 'package:e_Masker/pages/timerCount.dart';
 import 'package:e_Masker/pages/timerHistory.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +9,6 @@ class TabPages extends StatefulWidget {
 }
 
 class _TabPagesState extends State<TabPages> {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +26,11 @@ class _TabPagesState extends State<TabPages> {
             title: menu(),
           ),
           body: TabBarView(
-            children: [TimerHistoryPages(), TimerPages(), TimerPages()],
+            children: [
+              TimerHistoryPages(),
+              TimerCountPages(),
+              TimerCountPages()
+            ],
           ),
         ),
       ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TimerHistoryPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final exstensionPane = Container(child: Text('awdw'));
+    final exstensionPane = Center(child: Text('awdw'));
 
     final bottomSheet = Container(
       height: 200,
@@ -17,7 +17,7 @@ class TimerHistoryPages extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      child: Text('total masker'),
+      child: Center(child: Text('total masker')),
     );
 
     return Scaffold(
@@ -37,7 +37,7 @@ class TimerHistoryPages extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        elevation: 4.0,
+        elevation: 2.0,
         icon: const Icon(Icons.add),
         label: const Text('Masukkan Total Masker'),
         onPressed: () {},
@@ -54,10 +54,24 @@ class TimerHistoryPages extends StatelessWidget {
                 Router.changePage(context, HomePages());
               },
             ),
-            IconButton(
+            DropdownButton<String>(
               icon: Icon(Icons.more_vert),
-              onPressed: () {},
-            )
+              items: [
+                DropdownMenuItem(
+                  value: "1",
+                  child: Text(
+                    "Hapus",
+                  ),
+                ),
+                DropdownMenuItem(
+                  value: "2",
+                  child: Text(
+                    "Reset",
+                  ),
+                ),
+              ],
+              onChanged: (value) {},
+            ),
           ],
         ),
       ),
