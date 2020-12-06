@@ -102,7 +102,6 @@ class _OpeningPagesState extends State<OpeningPages> {
                     ),
                     FlatButton(
                       onPressed: () {
-                        // print("this is slideIndex: $slideIndex");
                         controller.animateToPage(slideIndex + 1,
                             duration: Duration(milliseconds: 500),
                             curve: Curves.linear);
@@ -129,7 +128,9 @@ class _OpeningPagesState extends State<OpeningPages> {
                   child: Text(
                     "GET STARTED NOW",
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w600),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
                   ),
                 ),
               ),

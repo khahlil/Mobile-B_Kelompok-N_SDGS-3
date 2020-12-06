@@ -36,8 +36,11 @@ class _WelcomePagesState extends State<WelcomePages> {
         height: 42.0,
         color: Colors.lightBlueAccent,
         child: Center(
-          child:
-              Text('Selamat Datang !', style: TextStyle(color: Colors.white)),
+          child: Text(
+            'Selamat Datang !',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),
+          ),
         ),
       ),
     );

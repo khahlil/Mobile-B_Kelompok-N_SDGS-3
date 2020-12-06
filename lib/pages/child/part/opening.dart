@@ -14,10 +14,10 @@ class OpeningList extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset(imagePath),
-          SizedBox( height: 40),
-          Text(title, style: Theme.of(context).textTheme.subtitle1),
-          SizedBox( height: 20),
-          Text(desc, style: Theme.of(context).textTheme.bodyText2),
+          SizedBox(height: 40),
+          Text(title, style: Theme.of(context).textTheme.subtitle2),
+          SizedBox(height: 20),
+          Text(desc, style: Theme.of(context).textTheme.bodyText1),
         ],
       ),
     );
