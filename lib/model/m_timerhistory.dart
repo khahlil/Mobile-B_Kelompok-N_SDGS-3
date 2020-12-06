@@ -15,8 +15,8 @@ List<TimerHistory> generateItems(int numberOfItems) {
   return List.generate(numberOfItems, (int index) {
     return TimerHistory(
       id: index,
-      headerValue: 'Panel $index',
-      expandedValue: 'This is item number $index',
+      headerValue: 'Masker ke - $index',
+      expandedValue: 'This is masker number - $index',
     );
   });
 }

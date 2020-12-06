@@ -1,20 +1,19 @@
 import 'package:e_Masker/control/router.dart';
+import 'package:e_Masker/pages/child/expansionPanel.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class TimerHistoryPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final exstensionPane = Center(child: Text('awdw'));
-
     final bottomSheet = Container(
       height: 200,
       width: 720,
       decoration: BoxDecoration(
-        color: Colors.red,
+        color: Colors.purple[100],
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
       ),
       child: Center(child: Text('total masker')),
@@ -25,9 +24,9 @@ class TimerHistoryPages extends StatelessWidget {
         children: [
           ListView(
             shrinkWrap: true,
-            // padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            padding: EdgeInsets.all(10),
             children: <Widget>[
-              exstensionPane,
+              ExpansionList(),
             ],
           ),
           Align(

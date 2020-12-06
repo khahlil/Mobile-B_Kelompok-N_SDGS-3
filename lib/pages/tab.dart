@@ -17,8 +17,12 @@ class _TabPagesState extends State<TabPages> {
       theme: ThemeData(
           appBarTheme:
               AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
-          textTheme:
-              TextTheme(subtitle1: TitleTextStyle, bodyText2: Body1TextStyle)),
+          textTheme: TextTheme(
+            subtitle1: Title1TextStyle,
+            subtitle2: Title2TextStyle,
+            bodyText1: Body1TextStyle,
+            bodyText2: Body2TextStyle,
+          )),
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
