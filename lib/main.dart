@@ -1,6 +1,7 @@
 import 'package:e_Masker/control/style.dart';
+import 'package:e_Masker/pages/expansionPanel.dart';
 // import 'package:e_Masker/pages/openingscreen.dart';
-import 'package:e_Masker/pages/tab.dart';
+// import 'package:e_Masker/pages/tab.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "e-Masker",
-      home: TabPages(),
+      home: ExpansionList(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           textTheme: TextTheme(
