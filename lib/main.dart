@@ -15,12 +15,14 @@ class MyApp extends StatelessWidget {
       title: "e-Masker",
       home: OpeningPages(),
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+          appBarTheme:
+              AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
           textTheme: TextTheme(
-            headline6: AppBarTextStyle)),
-        textTheme: TextTheme(
-          subtitle1: TitleTextStyle,
-          bodyText2: Body1TextStyle)),
+            subtitle1: Title1TextStyle,
+            subtitle2: Title2TextStyle,
+            bodyText1: Body1TextStyle,
+            bodyText2: Body2TextStyle,
+          )),
     );
   }
 }

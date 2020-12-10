@@ -24,7 +24,8 @@ class InfoPages extends StatelessWidget {
                 Icons.looks_one,
                 color: Colors.blueGrey,
               ),
-              title: Text("Khahlil Gilbran"),
+              title: Text("Khahlil Gilbran",
+                  style: Theme.of(context).textTheme.subtitle2),
               trailing: Text('182410103048'),
             ),
             ListTile(
@@ -32,7 +33,8 @@ class InfoPages extends StatelessWidget {
                 Icons.looks_two,
                 color: Colors.blueGrey,
               ),
-              title: Text("Abizhar Nazha"),
+              title: Text("Abizhar Nazha",
+                  style: Theme.of(context).textTheme.subtitle2),
               trailing: Text('182410103049'),
             ),
             ListTile(
@@ -40,7 +42,8 @@ class InfoPages extends StatelessWidget {
                 Icons.looks_3,
                 color: Colors.blueGrey,
               ),
-              title: Text("M. Indefandia K"),
+              title: Text("M. Indefandia K",
+                  style: Theme.of(context).textTheme.subtitle2),
               trailing: Text('182410103072'),
             )
           ],

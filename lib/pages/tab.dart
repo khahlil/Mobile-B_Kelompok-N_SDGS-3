@@ -1,6 +1,6 @@
-import 'package:e_Masker/pages/welcome.dart';
-import 'package:e_Masker/pages/openingscreen.dart';
-import 'package:e_Masker/pages/timer.dart';
+import 'package:e_Masker/control/style.dart';
+import 'package:e_Masker/pages/timerCount.dart';
+import 'package:e_Masker/pages/timerHistory.dart';
 import 'package:flutter/material.dart';
 
 class TabPages extends StatefulWidget {
@@ -9,21 +9,31 @@ class TabPages extends StatefulWidget {
 }
 
 class _TabPagesState extends State<TabPages> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "e-Masker",
+      theme: ThemeData(
+          appBarTheme:
+              AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
+          textTheme: TextTheme(
+            subtitle1: Title1TextStyle,
+            subtitle2: Title2TextStyle,
+            bodyText1: Body1TextStyle,
+            bodyText2: Body2TextStyle,
+          )),
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xFF3F5AA6),
-            title: Text("Home ver 2"),
+            title: menu(),
           ),
-          bottomNavigationBar: menu(),
           body: TabBarView(
             children: [
-              TimerPages(), WelcomePages(), OpeningPages()
+              TimerHistoryPages(),
+              TimerCountPages(),
+              TimerCountPages()
             ],
           ),
         ),
@@ -33,7 +43,6 @@ class _TabPagesState extends State<TabPages> {
 
   Widget menu() {
     return Container(
-      color: Color(0xFF3F5AA6),
       child: TabBar(
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white70,
@@ -42,16 +51,13 @@ class _TabPagesState extends State<TabPages> {
         indicatorColor: Colors.blue,
         tabs: [
           Tab(
-            text: "Transactions",
-            icon: Icon(Icons.euro_symbol),
-          ),
-          Tab(
-            text: "Bills",
             icon: Icon(Icons.assignment),
           ),
           Tab(
-            text: "Balance",
-            icon: Icon(Icons.account_balance_wallet),
+            icon: Icon(Icons.edit),
+          ),
+          Tab(
+            icon: Icon(Icons.alarm),
           )
         ],
       ),

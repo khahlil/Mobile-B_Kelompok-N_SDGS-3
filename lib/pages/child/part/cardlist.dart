@@ -12,17 +12,20 @@ class CardList extends StatelessWidget {
       child: Card(
         elevation: 10,
         clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-              child: Image.asset(image, fit: BoxFit.cover)),
-            ListTile(title: Text(title)),
+                padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
+                child: Image.asset(image, fit: BoxFit.cover)),
+            ListTile(
+                title:
+                    Text(title, style: Theme.of(context).textTheme.bodyText2)),
             Container(
               padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 30.0),
-              child: Text(subtitle, style: TextStyle(color: Colors.black))),
+              child:
+                  Text(subtitle, style: Theme.of(context).textTheme.bodyText1),
+            ),
           ],
         ),
       ),
