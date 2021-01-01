@@ -3,6 +3,8 @@ import 'package:e_Masker/pages/timerCount.dart';
 import 'package:e_Masker/pages/timerHistory.dart';
 import 'package:flutter/material.dart';
 
+import 'time.dart';
+
 class TabPages extends StatefulWidget {
   @override
   _TabPagesState createState() => _TabPagesState();
@@ -33,7 +35,7 @@ class _TabPagesState extends State<TabPages> {
             children: [
               TimerHistoryPages(),
               TimerCountPages(),
-              TimerCountPages()
+              OtpTimer(),
             ],
           ),
         ),
