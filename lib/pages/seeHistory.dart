@@ -3,7 +3,7 @@ import 'package:e_Masker/pages/child/expansionPanel.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:flutter/material.dart';
 
-class TimerHistoryPages extends StatelessWidget {
+class SeeHistoryPages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomSheet = Container(
@@ -58,15 +58,13 @@ class TimerHistoryPages extends StatelessWidget {
               items: [
                 DropdownMenuItem(
                   value: "1",
-                  child: Text(
-                    "Hapus",
-                  ),
+                  child: Text("Hapus",
+                      style: Theme.of(context).textTheme.subtitle2),
                 ),
                 DropdownMenuItem(
                   value: "2",
-                  child: Text(
-                    "Reset",
-                  ),
+                  child: Text("Reset",
+                      style: Theme.of(context).textTheme.subtitle2),
                 ),
               ],
               onChanged: (value) {},
