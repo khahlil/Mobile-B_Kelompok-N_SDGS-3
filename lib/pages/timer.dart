@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class OtpTimer extends StatefulWidget {
+class TimerPages extends StatefulWidget {
   @override
-  _OtpTimerState createState() => _OtpTimerState();
+  _TimerPagesState createState() => _TimerPagesState();
 }
 
-class _OtpTimerState extends State<OtpTimer> {
+class _TimerPagesState extends State<TimerPages> {
   final interval = const Duration(seconds: 1);
 
   final int timerMaxSeconds = 86400;
