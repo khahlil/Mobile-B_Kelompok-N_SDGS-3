@@ -1,4 +1,4 @@
-import 'package:e_Masker/control/router.dart';
+import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/child/list.dart';
 import 'package:e_Masker/pages/info.dart';
 import 'package:e_Masker/pages/tab.dart';

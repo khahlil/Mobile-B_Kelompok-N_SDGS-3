@@ -1,4 +1,4 @@
-import 'package:e_Masker/control/style.dart';
+import 'package:e_Masker/controls/style.dart';
 import 'package:e_Masker/pages/openingscreen.dart';
 import 'package:flutter/material.dart';
 

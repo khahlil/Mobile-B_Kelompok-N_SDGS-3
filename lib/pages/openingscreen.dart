@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:e_Masker/model/m_opening.dart';
-import 'package:e_Masker/control/router.dart';
+import 'package:e_Masker/models/m_opening.dart';
+import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/child/part/opening.dart';
 import 'package:e_Masker/pages/welcome.dart';
 import 'package:flutter/material.dart';

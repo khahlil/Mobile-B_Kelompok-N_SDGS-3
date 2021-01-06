@@ -1,5 +1,5 @@
-import 'package:e_Masker/control/router.dart';
-import 'package:e_Masker/model/m_list.dart';
+import 'package:e_Masker/controls/router.dart';
+import 'package:e_Masker/models/m_list.dart';
 import 'package:e_Masker/pages/child/part/cardlist.dart';
 import 'package:e_Masker/pages/detail.dart';
 import 'package:flutter/material.dart';

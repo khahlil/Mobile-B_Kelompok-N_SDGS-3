@@ -1,4 +1,4 @@
-import 'package:e_Masker/control/router.dart';
+import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/child/expansionPanel.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:flutter/material.dart';
