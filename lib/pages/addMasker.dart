@@ -29,11 +29,11 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
         children: <Widget>[
           judul(),
           SizedBox(height: 50.0),
-          pemisah(),
           Container(
             child:
                 Text(_expression, style: Theme.of(context).textTheme.subtitle1),
           ),
+          pemisah(),
           SizedBox(height: 20.0),
           tombol1(),
           tombol2(),
@@ -157,7 +157,6 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
         textColor: Colors.white,
         splashColor: Colors.yellowAccent[50],
         onPressed: () {},
-        child: Text('Kembali'));
-    // Container(height: 20, child: SizedBox());
+        child: Text('Simpan'));
   }
 }
