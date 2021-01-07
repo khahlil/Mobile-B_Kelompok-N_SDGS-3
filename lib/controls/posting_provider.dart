@@ -8,7 +8,7 @@ class PostingProvider extends ChangeNotifier {
   List<PostingModel> get dataPosting => _data;
 
   Future<List<PostingModel>> getPosting() async {
-    final url = 'http://localhost/quotes/home/json';
+    final url = 'http://ifa.pbf.ilkom.unej.ac.id/182410103011/uas/home/json';
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

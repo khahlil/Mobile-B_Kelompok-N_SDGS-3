@@ -30,11 +30,7 @@ class _TabPagesState extends State<TabPages> {
             title: menu(),
           ),
           body: TabBarView(
-            children: [
-              SeeHistoryPages(),
-              AddMaskerPages(),
-              AddMaskerPages()
-            ],
+            children: [SeeHistoryPages(), AddMaskerPages(), AddMaskerPages()],
           ),
         ),
       ),

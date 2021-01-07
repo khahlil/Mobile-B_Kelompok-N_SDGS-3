@@ -1,5 +1,6 @@
 import 'package:e_Masker/controls/router.dart';
-import 'package:e_Masker/pages/child/list.dart';
+// import 'package:e_Masker/pages/child/list.dart';
+import 'package:e_Masker/pages/part_posting.dart';
 import 'package:e_Masker/pages/info.dart';
 import 'package:e_Masker/pages/tab.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,8 @@ class _HomePagesState extends State<HomePages> {
           ],
         ),
       ),
-      body: Center(child: ListPages()),
+      body: Center(child: PostingPages()),
+      // body: Center(child: ListPages()),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10.0),
         child: FloatingActionButton.extended(
