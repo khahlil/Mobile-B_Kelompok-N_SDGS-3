@@ -81,9 +81,12 @@ class HistoryPagesState extends State<HistoryPages> {
               icon: Icon(Icons.more_vert),
               items: [
                 DropdownMenuItem(
-                  value: "2",
+                  value: '',
                   child: Text("Reset",
                       style: Theme.of(context).textTheme.subtitle2),
+                  onTap: () {
+                    reset();
+                  },
                 ),
               ],
               onChanged: (value) {},
@@ -103,18 +106,18 @@ class HistoryPagesState extends State<HistoryPages> {
             value: item.id,
             headerBuilder: (BuildContext context, bool isExpanded) {
               return ListTile(
-                title: Text(item.time,
+                title: Text('Hari ' + item.hari,
                     style: Theme.of(context).textTheme.bodyText2),
               );
             },
             body: ListTile(
-                title: Text(item.date,
+                title: Text('Tanggal : ' + item.date,
                     style: Theme.of(context).textTheme.bodyText2),
-                subtitle: Text('To delete this panel, tap the trash can icon',
+                subtitle: Text('Lama Pemakaian : ' + item.time,
                     style: Theme.of(context).textTheme.bodyText1),
                 trailing: Icon(Icons.delete),
                 onTap: () {
-                  deleteHistory(historyList[item.id]);
+                  deleteHistory(item);
                 }));
       }).toList(),
     );
@@ -125,12 +128,10 @@ class HistoryPagesState extends State<HistoryPages> {
     var result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) {
       return EntryHistory(history);
-      // return EntryForm(history);
     }));
     return result;
   }
 
-  //delete contact
   void deleteHistory(History object) async {
     int result = await dbHistory.delete(object.id);
     if (result > 0) {
@@ -138,7 +139,6 @@ class HistoryPagesState extends State<HistoryPages> {
     }
   }
 
-  //buat contact
   void addHistory(History object) async {
     int result = await dbHistory.insert(object);
     if (result > 0) {
@@ -146,9 +146,13 @@ class HistoryPagesState extends State<HistoryPages> {
     }
   }
 
-  //update contact
+  void reset() async {
+    await dbHistory.dropDb();
+    updateListView();
+  }
+
   void updateListView() {
-    final Future<Database> dbFuture = dbHistory.initDb();
+    Future<Database> dbFuture = dbHistory.initDb();
     dbFuture.then((database) {
       Future<List<History>> historyListFuture = dbHistory.getHistoryList();
       historyListFuture.then((historyList) {

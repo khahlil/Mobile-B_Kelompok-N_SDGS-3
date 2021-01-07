@@ -22,24 +22,31 @@ class DbHistory {
     return todoDatabase;
   }
 
+  Future<Database> get database async {
+    if (_database == null) _database = await initDb();
+    return _database;
+  }
+
   void _createDb(Database db, int version) async {
     await db.execute('''
       CREATE TABLE history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        hari TEXT,
         date TEXT,
         time TEXT
       )
     ''');
   }
 
-  Future<Database> get database async {
-    if (_database == null) _database = await initDb();
+  Future<Database> dropDb() async {
+    Database db = await this.database;
+    await db.delete('history');
     return _database;
   }
 
   Future<List<Map<String, dynamic>>> select() async {
     Database db = await this.database;
-    var mapList = await db.query('history', orderBy: 'date');
+    var mapList = await db.query('history', orderBy: 'id');
     return mapList;
   }
 

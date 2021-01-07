@@ -16,6 +16,7 @@ class EntryHistoryState extends State<EntryHistory> {
 
   EntryHistoryState(this.history);
 
+  TextEditingController hariController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController timeController = TextEditingController();
 
@@ -23,6 +24,7 @@ class EntryHistoryState extends State<EntryHistory> {
   Widget build(BuildContext context) {
     //kondisi
     if (history != null) {
+      hariController.text = history.hari;
       dateController.text = history.date;
       timeController.text = history.time;
     }
@@ -36,7 +38,22 @@ class EntryHistoryState extends State<EntryHistory> {
           padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
           child: ListView(
             children: <Widget>[
-              // nama
+              Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: TextField(
+                  controller: hariController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Hari',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (value) {
+                    //
+                  },
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
@@ -53,8 +70,6 @@ class EntryHistoryState extends State<EntryHistory> {
                   },
                 ),
               ),
-
-              // telepon
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
@@ -86,8 +101,12 @@ class EntryHistoryState extends State<EntryHistory> {
                         onPressed: () {
                           if (history == null) {
                             history = History(
-                                dateController.text, timeController.text);
+                              timeController.text,
+                              hariController.text,
+                              dateController.text,
+                            );
                           } else {
+                            history.hari = hariController.text;
                             history.date = dateController.text;
                             history.time = timeController.text;
                           }
