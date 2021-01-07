@@ -57,11 +57,6 @@ class SeeHistoryPages extends StatelessWidget {
               icon: Icon(Icons.more_vert),
               items: [
                 DropdownMenuItem(
-                  value: "1",
-                  child: Text("Hapus",
-                      style: Theme.of(context).textTheme.subtitle2),
-                ),
-                DropdownMenuItem(
                   value: "2",
                   child: Text("Reset",
                       style: Theme.of(context).textTheme.subtitle2),
