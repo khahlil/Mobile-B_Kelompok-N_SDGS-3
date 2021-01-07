@@ -1,6 +1,6 @@
 import 'package:e_Masker/controls/style.dart';
 import 'package:e_Masker/pages/addMasker.dart';
-import 'package:e_Masker/pages/seeHistory.dart';
+import 'package:e_Masker/pages/history.dart';
 import 'package:flutter/material.dart';
 
 class TabPages extends StatefulWidget {
@@ -30,7 +30,7 @@ class _TabPagesState extends State<TabPages> {
             title: menu(),
           ),
           body: TabBarView(
-            children: [SeeHistoryPages(), AddMaskerPages(), AddMaskerPages()],
+            children: [HistoryPages(), AddMaskerPages(), AddMaskerPages()],
           ),
         ),
       ),
