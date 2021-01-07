@@ -1,4 +1,3 @@
-// stores ExpansionPanel state information
 class TimerHistory {
   TimerHistory({
     this.id,

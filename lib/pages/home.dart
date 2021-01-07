@@ -1,6 +1,5 @@
 import 'package:e_Masker/controls/router.dart';
-// import 'package:e_Masker/pages/child/list.dart';
-import 'package:e_Masker/pages/part_posting.dart';
+import 'package:e_Masker/pages/child/posting.dart';
 import 'package:e_Masker/pages/info.dart';
 import 'package:e_Masker/pages/tab.dart';
 import 'package:flutter/material.dart';

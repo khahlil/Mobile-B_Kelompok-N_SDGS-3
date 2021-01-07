@@ -1,6 +1,5 @@
 import 'package:e_Masker/controls/posting_provider.dart';
 import 'package:e_Masker/controls/router.dart';
-// import 'package:e_Masker/models/m_posting.dart';
 import 'package:e_Masker/pages/child/part/cardlist.dart';
 import 'package:e_Masker/pages/detail.dart';
 import 'package:flutter/material.dart';
@@ -12,23 +11,6 @@ class PostingPages extends StatefulWidget {
 }
 
 class _PostingPagesState extends State<PostingPages> {
-  // final data = [
-  //   PostingModel(
-  //     title: "title",
-  //     image: "assets/images/masker.jpg",
-  //     subtitle: "subtitle.",
-  //     content1: "content1",
-  //     content2: "content2",
-  //   ),
-  //   PostingModel(
-  //     title: "title",
-  //     image: "assets/images/masker.jpg",
-  //     subtitle: "subtitle.",
-  //     content1: "content1",
-  //     content2: "content2",
-  //   ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

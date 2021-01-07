@@ -30,14 +30,16 @@ List<OpeningModel> getSlides() {
   sliderModel = new OpeningModel();
   sliderModel.setImageAssetPath("assets/images/gambar2.png");
   sliderModel.setTitle("Wear Mask");
-  sliderModel.setDesc("Jangan lupa pakai masker kemanapun anda pergi, supaya tidak terjangkit virus Covid-19");
+  sliderModel.setDesc(
+      "Jangan lupa pakai masker kemanapun anda pergi, supaya tidak terjangkit virus Covid-19");
   slides.add(sliderModel);
 
   //3
   sliderModel = new OpeningModel();
   sliderModel.setImageAssetPath("assets/images/gambar3.png");
   sliderModel.setTitle("Time");
-  sliderModel.setDesc("Jangan lupa selalu mengganti masker anda dengan masker yang baru dan pastinya bersih");
+  sliderModel.setDesc(
+      "Jangan lupa selalu mengganti masker anda dengan masker yang baru dan pastinya bersih");
   slides.add(sliderModel);
 
   return slides;
