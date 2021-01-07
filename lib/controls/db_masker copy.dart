@@ -4,15 +4,15 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:e_Masker/models/m_masker.dart';
 
-class DbHelper {
-  static DbHelper _dbHelper;
+class DbMasker {
+  static DbMasker _dbHelper;
   static Database _database;
 
-  DbHelper._createObject();
+  DbMasker._createObject();
 
-  factory DbHelper() {
+  factory DbMasker() {
     if (_dbHelper == null) {
-      _dbHelper = DbHelper._createObject();
+      _dbHelper = DbMasker._createObject();
     }
     return _dbHelper;
   }
