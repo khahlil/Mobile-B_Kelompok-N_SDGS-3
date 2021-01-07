@@ -1,4 +1,5 @@
 import 'package:e_Masker/controls/db_history.dart';
+import 'package:e_Masker/pages/entryHistory.dart';
 import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/home.dart';
@@ -123,7 +124,7 @@ class HistoryPagesState extends State<HistoryPages> {
       BuildContext context, History history) async {
     var result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) {
-      return null;
+      return EntryHistory(history);
       // return EntryForm(history);
     }));
     return result;
