@@ -9,7 +9,7 @@ class ExpandHistory extends StatefulWidget {
 }
 
 class ExpandHistoryState extends State<ExpandHistory> {
-  DbHistory dbHelper = DbHistory();
+  DbHistory dbHistory = DbHistory();
   int count = 0;
   List<History> historyList;
 
@@ -55,9 +55,9 @@ class ExpandHistoryState extends State<ExpandHistory> {
 
   //update contact
   void updateListView() {
-    final Future<Database> dbFuture = dbHelper.initDb();
+    final Future<Database> dbFuture = dbHistory.initDb();
     dbFuture.then((database) {
-      Future<List<History>> historyListFuture = dbHelper.getHistoryList();
+      Future<List<History>> historyListFuture = dbHistory.getHistoryList();
       historyListFuture.then((historyList) {
         setState(() {
           this.historyList = historyList;
@@ -69,7 +69,7 @@ class ExpandHistoryState extends State<ExpandHistory> {
 
   //delete contact
   void deleteHistory(History object) async {
-    int result = await dbHelper.delete(object.id);
+    int result = await dbHistory.delete(object.id);
     if (result > 0) {
       updateListView();
     }

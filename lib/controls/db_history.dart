@@ -11,59 +11,49 @@ class DbHistory {
   DbHistory._createObject();
 
   factory DbHistory() {
-    if (_dbHelper == null) {
-      _dbHelper = DbHistory._createObject();
-    }
+    if (_dbHelper == null) _dbHelper = DbHistory._createObject();
     return _dbHelper;
   }
 
   Future<Database> initDb() async {
-    //untuk menentukan nama database dan lokasi yg dibuat
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'masker.db';
-
-    //create, read databases
+    String path = directory.path + 'history.db';
     var todoDatabase = openDatabase(path, version: 1, onCreate: _createDb);
-
-    //mengembalikan nilai object sebagai hasil dari fungsinya
     return todoDatabase;
   }
 
-  //buat tabel baru dengan nama masker
   void _createDb(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE masker (
+      CREATE TABLE history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        phone TEXT
+        date TEXT,
+        time TEXT
       )
     ''');
   }
 
   Future<Database> get database async {
-    if (_database == null) {
-      _database = await initDb();
-    }
+    if (_database == null) _database = await initDb();
     return _database;
   }
 
   Future<List<Map<String, dynamic>>> select() async {
     Database db = await this.database;
-    var mapList = await db.query('masker', orderBy: 'name');
+    var mapList = await db.query('history', orderBy: 'date');
     return mapList;
   }
 
 //create databases
   Future<int> insert(History object) async {
     Database db = await this.database;
-    int count = await db.insert('masker', object.toMap());
+    int count = await db.insert('history', object.toMap());
     return count;
   }
 
 //update databases
   Future<int> update(History object) async {
     Database db = await this.database;
-    int count = await db.update('masker', object.toMap(),
+    int count = await db.update('history', object.toMap(),
         where: 'id=?', whereArgs: [object.id]);
     return count;
   }
@@ -71,17 +61,16 @@ class DbHistory {
 //delete databases
   Future<int> delete(int id) async {
     Database db = await this.database;
-    int count = await db.delete('masker', where: 'id=?', whereArgs: [id]);
+    int count = await db.delete('history', where: 'id=?', whereArgs: [id]);
     return count;
   }
 
   Future<List<History>> getHistoryList() async {
-    var maskerMapList = await select();
-    int count = maskerMapList.length;
-    List<History> maskerList = List<History>();
-    for (int i = 0; i < count; i++) {
-      maskerList.add(History.fromMap(maskerMapList[i]));
-    }
-    return maskerList;
+    var historyMapList = await select();
+    int count = historyMapList.length;
+    List<History> historyList = List<History>();
+    for (int i = 0; i < count; i++)
+      historyList.add(History.fromMap(historyMapList[i]));
+    return historyList;
   }
 }
