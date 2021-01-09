@@ -18,7 +18,6 @@ class _TimerPagesState extends State<TimerPages>
 
   DbHistory dbHistory = DbHistory();
   History history;
-  var now = new DateTime.now();
 
   @protected
   @override
@@ -46,17 +45,17 @@ class _TimerPagesState extends State<TimerPages>
   }
 
   todayDate() {
-    var formatter = new DateFormat('dd-MMMM-yyyy').format(now);
+    var formatter = new DateFormat('dd-MMMM-yyyy').format(DateTime.now());
     return formatter;
   }
 
   todayTime() {
-    var formatter = new DateFormat('kk:mm:a').format(now);
+    var formatter = new DateFormat('kk:mm:a').format(DateTime.now());
     return formatter;
   }
 
   todayDay() {
-    var formatter = new DateFormat('EEEE').format(now);
+    var formatter = new DateFormat('EEEE').format(DateTime.now());
     return formatter;
   }
 
