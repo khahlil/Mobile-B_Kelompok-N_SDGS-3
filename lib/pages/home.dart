@@ -48,7 +48,6 @@ class _HomePagesState extends State<HomePages> {
         ),
       ),
       body: Center(child: PostingPages()),
-      // body: Center(child: ListPages()),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10.0),
         child: FloatingActionButton.extended(

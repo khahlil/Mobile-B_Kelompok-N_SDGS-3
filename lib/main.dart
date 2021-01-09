@@ -13,24 +13,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => PostingProvider(),
-          )
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: "e-Masker",
-          home: OpeningPages(),
-          theme: ThemeData(
-              appBarTheme:
-                  AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
-              textTheme: TextTheme(
-                subtitle1: Title1TextStyle,
-                subtitle2: Title2TextStyle,
-                bodyText1: Body1TextStyle,
-                bodyText2: Body2TextStyle,
-              )),
-        ));
+      providers: [ChangeNotifierProvider(create: (_) => PostingProvider())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "e-Masker",
+        home: OpeningPages(),
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            textTheme: TextTheme(headline6: AppBarTextStyle),
+          ),
+          textTheme: TextTheme(
+            subtitle1: Title1TextStyle,
+            subtitle2: Title2TextStyle,
+            bodyText1: Body1TextStyle,
+            bodyText2: Body2TextStyle,
+          ),
+        ),
+      ),
+    );
   }
 }

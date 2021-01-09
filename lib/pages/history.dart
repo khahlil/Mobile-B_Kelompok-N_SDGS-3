@@ -50,10 +50,7 @@ class HistoryPagesState extends State<HistoryPages> {
               ),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: bottomSheet,
-          ),
+          Align(alignment: Alignment.bottomCenter, child: bottomSheet),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -103,22 +100,23 @@ class HistoryPagesState extends State<HistoryPages> {
       initialOpenPanelValue: 0,
       children: historyList.map<ExpansionPanelRadio>((History item) {
         return ExpansionPanelRadio(
-            value: item.id,
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return ListTile(
-                title: Text('Hari ' + item.hari,
-                    style: Theme.of(context).textTheme.bodyText2),
-              );
-            },
-            body: ListTile(
-                title: Text('Tanggal : ' + item.date,
-                    style: Theme.of(context).textTheme.bodyText2),
-                subtitle: Text('Lama Pemakaian : ' + item.time,
-                    style: Theme.of(context).textTheme.bodyText1),
-                trailing: Icon(Icons.delete),
-                onTap: () {
-                  deleteHistory(item);
-                }));
+          value: item.id,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text('Hari ' + item.hari,
+                  style: Theme.of(context).textTheme.bodyText2),
+            );
+          },
+          body: ListTile(
+              title: Text('Tanggal : ' + item.date,
+                  style: Theme.of(context).textTheme.bodyText2),
+              subtitle: Text('Lama Pemakaian : ' + item.time,
+                  style: Theme.of(context).textTheme.bodyText1),
+              trailing: Icon(Icons.delete),
+              onTap: () {
+                deleteHistory(item);
+              }),
+        );
       }).toList(),
     );
   }

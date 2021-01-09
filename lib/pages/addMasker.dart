@@ -1,4 +1,5 @@
 import 'package:e_Masker/pages/child/part_addMasker.dart';
+import 'package:e_Masker/pages/tab.dart';
 import 'package:flutter/material.dart';
 
 class AddMaskerPages extends StatefulWidget {
@@ -53,30 +54,16 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
   }
 
   pemisah() {
-    return Divider(
-      color: Colors.grey,
-      thickness: 1,
-      indent: 20,
-      endIndent: 20,
-    );
+    return Divider(color: Colors.grey, thickness: 1, indent: 20, endIndent: 20);
   }
 
   tombol1() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        AddMasker(
-          text: '1',
-          callback: numClick,
-        ),
-        AddMasker(
-          text: '2',
-          callback: numClick,
-        ),
-        AddMasker(
-          text: '3',
-          callback: numClick,
-        ),
+        AddMasker(text: '1', callback: numClick),
+        AddMasker(text: '2', callback: numClick),
+        AddMasker(text: '3', callback: numClick),
       ],
     );
   }
@@ -85,18 +72,9 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        AddMasker(
-          text: '4',
-          callback: numClick,
-        ),
-        AddMasker(
-          text: '5',
-          callback: numClick,
-        ),
-        AddMasker(
-          text: '6',
-          callback: numClick,
-        ),
+        AddMasker(text: '4', callback: numClick),
+        AddMasker(text: '5', callback: numClick),
+        AddMasker(text: '6', callback: numClick),
       ],
     );
   }
@@ -105,18 +83,9 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        AddMasker(
-          text: '7',
-          callback: numClick,
-        ),
-        AddMasker(
-          text: '8',
-          callback: numClick,
-        ),
-        AddMasker(
-          text: '9',
-          callback: numClick,
-        ),
+        AddMasker(text: '7', callback: numClick),
+        AddMasker(text: '8', callback: numClick),
+        AddMasker(text: '9', callback: numClick),
       ],
     );
   }
@@ -127,15 +96,9 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       children: <Widget>[
         Container(
           width: 60.0,
-          child: MaterialButton(
-            onPressed: null,
-            child: SizedBox(),
-          ),
+          child: MaterialButton(onPressed: null, child: SizedBox()),
         ),
-        AddMasker(
-          text: '0',
-          callback: numClick,
-        ),
+        AddMasker(text: '0', callback: numClick),
         Container(
           width: 60.0,
           child: IconButton(
@@ -152,11 +115,15 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
 
   simpan() {
     return RaisedButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: Colors.blue,
-        textColor: Colors.white,
-        splashColor: Colors.yellowAccent[50],
-        onPressed: () {},
-        child: Text('Simpan'));
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      color: Colors.blue,
+      textColor: Colors.white,
+      splashColor: Colors.yellowAccent[50],
+      child: Text('Simpan'),
+      onPressed: () {
+        final controller = TabProvider.of(context).tabController;
+        controller.index = 1;
+      },
+    );
   }
 }

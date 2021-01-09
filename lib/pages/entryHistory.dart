@@ -30,112 +30,101 @@ class EntryHistoryState extends State<EntryHistory> {
     }
     //rubah
     return Scaffold(
-        appBar: AppBar(
-          title: history == null ? Text('Add') : Text('Edit'),
-          leading: Icon(Icons.keyboard_arrow_left),
+      appBar: AppBar(
+        title: history == null ? Text('Add') : Text('Edit'),
+        leading: Icon(Icons.keyboard_arrow_left),
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: TextField(
+                controller: hariController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: 'Hari',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+                onChanged: (value) {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: TextField(
+                controller: dateController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: 'Tanggal',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+                onChanged: (value) {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: TextField(
+                controller: timeController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: 'Lama Pemakaian',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+                onChanged: (value) {},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      color: Theme.of(context).primaryColorDark,
+                      textColor: Theme.of(context).primaryColorLight,
+                      child: Text('Save', textScaleFactor: 1.5),
+                      onPressed: () {
+                        if (history == null) {
+                          history = History(
+                            timeController.text,
+                            hariController.text,
+                            dateController.text,
+                          );
+                        } else {
+                          history.hari = hariController.text;
+                          history.date = dateController.text;
+                          history.time = timeController.text;
+                        }
+                        Navigator.pop(context, history);
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: 5.0,
+                  ),
+                  // tombol batal
+                  Expanded(
+                    child: RaisedButton(
+                      color: Theme.of(context).primaryColorDark,
+                      textColor: Theme.of(context).primaryColorLight,
+                      child: Text('Cancel', textScaleFactor: 1.5),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-        body: Padding(
-          padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
-          child: ListView(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                child: TextField(
-                  controller: hariController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'Hari',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    //
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                child: TextField(
-                  controller: dateController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'Tanggal',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    //
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                child: TextField(
-                  controller: timeController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'Lama Pemakaian',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    //
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
-                        textColor: Theme.of(context).primaryColorLight,
-                        child: Text(
-                          'Save',
-                          textScaleFactor: 1.5,
-                        ),
-                        onPressed: () {
-                          if (history == null) {
-                            history = History(
-                              timeController.text,
-                              hariController.text,
-                              dateController.text,
-                            );
-                          } else {
-                            history.hari = hariController.text;
-                            history.date = dateController.text;
-                            history.time = timeController.text;
-                          }
-                          Navigator.pop(context, history);
-                        },
-                      ),
-                    ),
-                    Container(
-                      width: 5.0,
-                    ),
-                    // tombol batal
-                    Expanded(
-                      child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
-                        textColor: Theme.of(context).primaryColorLight,
-                        child: Text(
-                          'Cancel',
-                          textScaleFactor: 1.5,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }

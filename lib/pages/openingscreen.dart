@@ -38,8 +38,9 @@ class _OpeningPagesState extends State<OpeningPages> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [const Color(0xff3C8CE7), const Color(0xff00EAFF)])),
+        gradient: LinearGradient(
+            colors: [const Color(0xff3C8CE7), const Color(0xff00EAFF)]),
+      ),
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Container(

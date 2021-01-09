@@ -50,14 +50,12 @@ class DbHistory {
     return mapList;
   }
 
-//create databases
   Future<int> insert(History object) async {
     Database db = await this.database;
     int count = await db.insert('history', object.toMap());
     return count;
   }
 
-//update databases
   Future<int> update(History object) async {
     Database db = await this.database;
     int count = await db.update('history', object.toMap(),
@@ -65,7 +63,6 @@ class DbHistory {
     return count;
   }
 
-//delete databases
   Future<int> delete(int id) async {
     Database db = await this.database;
     int count = await db.delete('history', where: 'id=?', whereArgs: [id]);

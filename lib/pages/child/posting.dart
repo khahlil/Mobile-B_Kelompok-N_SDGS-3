@@ -17,33 +17,34 @@ class _PostingPagesState extends State<PostingPages> {
       future: Provider.of<PostingProvider>(context, listen: false).getPosting(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return Center(child: CircularProgressIndicator());
         }
         return Consumer<PostingProvider>(
           builder: (context, data, _) {
             return ListView.builder(
-                itemCount: data.dataPosting.length,
-                itemBuilder: (context, int i) {
-                  return InkWell(
-                    splashColor: Colors.blueAccent[200],
-                    onTap: () {
-                      Router.changePages(
-                          context,
-                          DetailPages(
-                              image: data.dataPosting[i].image,
-                              title: data.dataPosting[i].title,
-                              content1: data.dataPosting[i].content1,
-                              content2: data.dataPosting[i].content2));
-                    },
-                    child: CardList(
-                      image: data.dataPosting[i].image,
-                      title: data.dataPosting[i].title,
-                      subtitle: data.dataPosting[i].subtitle,
-                    ),
-                  );
-                });
+              itemCount: data.dataPosting.length,
+              itemBuilder: (context, int i) {
+                return InkWell(
+                  splashColor: Colors.blueAccent[200],
+                  onTap: () {
+                    Router.changePages(
+                      context,
+                      DetailPages(
+                        image: data.dataPosting[i].image,
+                        title: data.dataPosting[i].title,
+                        content1: data.dataPosting[i].content1,
+                        content2: data.dataPosting[i].content2,
+                      ),
+                    );
+                  },
+                  child: CardList(
+                    image: data.dataPosting[i].image,
+                    title: data.dataPosting[i].title,
+                    subtitle: data.dataPosting[i].subtitle,
+                  ),
+                );
+              },
+            );
           },
         );
       },
