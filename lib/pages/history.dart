@@ -62,12 +62,12 @@ class HistoryPagesState extends State<HistoryPages> {
         icon: Icon(Icons.add),
         label: countMasker != null ? Text('Mulai Timer') : Text(button),
         onPressed: () async {
-          if (countHistory - countMasker == 0) {
+          final controller = TabProvider.of(context).tabController;
+          if (countMasker == null) controller.index = 1;
+          if ((countHistory - countMasker) == 0)
             showMaterialDialog();
-          } else {
-            final controller = TabProvider.of(context).tabController;
-            countMasker == null ? controller.index = 1 : controller.index = 2;
-          }
+          else
+            controller.index = 2;
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
