@@ -7,6 +7,21 @@ class TabPages extends StatefulWidget {
   TabPagesState createState() => TabPagesState();
 }
 
+class TabProvider extends InheritedWidget {
+  final TabController tabController;
+  final Widget child;
+
+  TabProvider({this.tabController, this.child});
+
+  @override
+  bool updateShouldNotify(TabProvider oldWidget) {
+    return true;
+  }
+
+  static TabProvider of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<TabProvider>();
+}
+
 class TabPagesState extends State<TabPages>
     with SingleTickerProviderStateMixin {
   TabController _controller;
@@ -40,11 +55,6 @@ class TabPagesState extends State<TabPages>
   Widget menu() {
     return Container(
       child: TabBar(
-        labelColor: Colors.white,
-        unselectedLabelColor: Colors.white70,
-        indicatorSize: TabBarIndicatorSize.tab,
-        indicatorPadding: EdgeInsets.all(5.0),
-        indicatorColor: Colors.blue,
         controller: _controller,
         tabs: [
           Tab(icon: Icon(Icons.assignment)),
@@ -54,19 +64,4 @@ class TabPagesState extends State<TabPages>
       ),
     );
   }
-}
-
-class TabProvider extends InheritedWidget {
-  final TabController tabController;
-  final Widget child;
-
-  TabProvider({this.tabController, this.child});
-
-  @override
-  bool updateShouldNotify(TabProvider oldWidget) {
-    return true;
-  }
-
-  static TabProvider of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<TabProvider>();
 }

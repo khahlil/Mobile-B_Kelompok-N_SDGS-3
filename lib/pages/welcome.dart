@@ -24,32 +24,15 @@ class _WelcomePagesState extends State<WelcomePages> {
 
   @override
   Widget build(BuildContext context) {
-    final logo =
-        Hero(tag: 'hero', child: Image.asset('assets/images/logo-copy.png'));
-
-    final toHome = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Container(
-        width: 200.0,
-        height: 42.0,
-        color: Colors.lightBlueAccent,
-        child: Center(
-          child: Text(
-            'Selamat Datang !',
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),
-          ),
-        ),
-      ),
-    );
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[logo, SizedBox(height: 48.0), toHome],
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 30.0, left: 30.0, right: 30.0),
+          child: Hero(
+            tag: 'hero',
+            child: Image.asset('assets/images/logo-copy.png'),
+          ),
         ),
       ),
     );
