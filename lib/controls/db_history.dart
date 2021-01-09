@@ -1,8 +1,8 @@
+import 'package:path_provider/path_provider.dart';
+import 'package:e_Masker/models/m_history.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:e_Masker/models/m_history.dart';
 
 class DbHistory {
   static DbHistory _dbHelper;
@@ -53,13 +53,6 @@ class DbHistory {
   Future<int> insert(History object) async {
     Database db = await this.database;
     int count = await db.insert('history', object.toMap());
-    return count;
-  }
-
-  Future<int> update(History object) async {
-    Database db = await this.database;
-    int count = await db.update('history', object.toMap(),
-        where: 'id=?', whereArgs: [object.id]);
     return count;
   }
 

@@ -1,8 +1,8 @@
+import 'package:path_provider/path_provider.dart';
+import 'package:e_Masker/models/m_masker.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:e_Masker/models/m_masker.dart';
 
 class DbMasker {
   static DbMasker _dbHelper;
@@ -11,67 +11,46 @@ class DbMasker {
   DbMasker._createObject();
 
   factory DbMasker() {
-    if (_dbHelper == null) {
-      _dbHelper = DbMasker._createObject();
-    }
+    if (_dbHelper == null) _dbHelper = DbMasker._createObject();
     return _dbHelper;
   }
 
   Future<Database> initDb() async {
-    //untuk menentukan nama database dan lokasi yg dibuat
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'masker.db';
-
-    //create, read databases
     var todoDatabase = openDatabase(path, version: 1, onCreate: _createDb);
-
-    //mengembalikan nilai object sebagai hasil dari fungsinya
     return todoDatabase;
   }
 
-  //buat tabel baru dengan nama masker
+  Future<Database> get database async {
+    if (_database == null) _database = await initDb();
+    return _database;
+  }
+
   void _createDb(Database db, int version) async {
     await db.execute('''
       CREATE TABLE masker (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        phone TEXT
+        total INTEGER
       )
     ''');
   }
 
-  Future<Database> get database async {
-    if (_database == null) {
-      _database = await initDb();
-    }
+  Future<Database> dropDb() async {
+    Database db = await this.database;
+    await db.delete('masker');
     return _database;
   }
 
   Future<List<Map<String, dynamic>>> select() async {
     Database db = await this.database;
-    var mapList = await db.query('masker', orderBy: 'name');
+    var mapList = await db.query('masker', orderBy: 'id');
     return mapList;
   }
 
-//create databases
   Future<int> insert(Masker object) async {
     Database db = await this.database;
     int count = await db.insert('masker', object.toMap());
-    return count;
-  }
-
-//update databases
-  Future<int> update(Masker object) async {
-    Database db = await this.database;
-    int count = await db.update('masker', object.toMap(),
-        where: 'id=?', whereArgs: [object.id]);
-    return count;
-  }
-
-//delete databases
-  Future<int> delete(int id) async {
-    Database db = await this.database;
-    int count = await db.delete('masker', where: 'id=?', whereArgs: [id]);
     return count;
   }
 
@@ -79,9 +58,8 @@ class DbMasker {
     var maskerMapList = await select();
     int count = maskerMapList.length;
     List<Masker> maskerList = List<Masker>();
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++)
       maskerList.add(Masker.fromMap(maskerMapList[i]));
-    }
     return maskerList;
   }
 }
