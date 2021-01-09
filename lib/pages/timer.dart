@@ -1,4 +1,4 @@
-import 'package:e_Masker/pages/tab.dart';
+import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:flutter/material.dart';
 
 class TimerPages extends StatefulWidget {
@@ -8,9 +8,15 @@ class TimerPages extends StatefulWidget {
   _TimerPagesState createState() => _TimerPagesState();
 }
 
-class _TimerPagesState extends State<TimerPages> {
+class _TimerPagesState extends State<TimerPages>
+    with AutomaticKeepAliveClientMixin<TimerPages> {
+  @override
+  bool get wantKeepAlive => true;
+
+  @protected
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 60),
@@ -25,18 +31,6 @@ class _TimerPagesState extends State<TimerPages> {
                 blurRadius: 64,
               ),
             ],
-          ),
-          child: RaisedButton(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: Colors.blue,
-            textColor: Colors.white,
-            splashColor: Colors.yellowAccent[50],
-            child: Text('Simpan'),
-            onPressed: () {
-              final controller = TabProvider.of(context).tabController;
-              controller.index = 0;
-            },
           ),
         ),
       ),

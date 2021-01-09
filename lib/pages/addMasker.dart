@@ -1,5 +1,5 @@
 import 'package:e_Masker/pages/child/part_addMasker.dart';
-import 'package:e_Masker/pages/tab.dart';
+import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:flutter/material.dart';
 
 class AddMaskerPages extends StatefulWidget {
@@ -9,7 +9,11 @@ class AddMaskerPages extends StatefulWidget {
   _AddMaskerPagesState createState() => _AddMaskerPagesState();
 }
 
-class _AddMaskerPagesState extends State<AddMaskerPages> {
+class _AddMaskerPagesState extends State<AddMaskerPages>
+    with AutomaticKeepAliveClientMixin<AddMaskerPages> {
+  @override
+  bool get wantKeepAlive => true;
+
   String _expression = '';
 
   void numClick(String text) {
@@ -24,8 +28,10 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
     });
   }
 
+  @protected
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
