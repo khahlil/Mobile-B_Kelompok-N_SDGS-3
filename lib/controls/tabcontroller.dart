@@ -11,7 +11,7 @@ class TabPages extends StatefulWidget {
 class TabProvider extends InheritedWidget {
   final TabController tabController;
   final Widget child;
-  final String total;
+  final int total;
 
   TabProvider({this.tabController, this.child, this.total});
 
@@ -27,7 +27,7 @@ class TabProvider extends InheritedWidget {
 class TabPagesState extends State<TabPages>
     with SingleTickerProviderStateMixin {
   TabController _controller;
-  String updateTotal;
+  int updateTotal;
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class TabPagesState extends State<TabPages>
     super.dispose();
   }
 
-  changedTotal(String text) {
+  changedTotal(int text) {
     setState(() {
       updateTotal = text;
     });
@@ -53,9 +53,14 @@ class TabPagesState extends State<TabPages>
       appBar: AppBar(title: menu()),
       body: TabProvider(
         tabController: _controller,
+        total: updateTotal,
         child: TabBarView(
           controller: _controller,
-          children: [HistoryPages(), AddMaskerPages(changeTotal: changedTotal), TimerPages()],
+          children: [
+            HistoryPages(),
+            AddMaskerPages(changeTotal: changedTotal),
+            TimerPages()
+          ],
         ),
       ),
     );

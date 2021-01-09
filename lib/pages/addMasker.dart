@@ -3,7 +3,7 @@ import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:flutter/material.dart';
 
 class AddMaskerPages extends StatefulWidget {
-  final ValueChanged<String> changeTotal;
+  final ValueChanged<int> changeTotal;
   const AddMaskerPages({Key key, this.changeTotal}) : super(key: key);
 
   @override
@@ -25,7 +25,6 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
     });
   }
 
-  @protected
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +124,7 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Simpan'),
       onPressed: () {
-        widget.changeTotal(expression);
+        widget.changeTotal(int.parse(expression));
         final controller = TabProvider.of(context).tabController;
         controller.index = 0;
       },

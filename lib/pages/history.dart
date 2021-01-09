@@ -4,33 +4,34 @@ import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class HistoryPages extends StatefulWidget {
-  final String total;
+  final int total;
   const HistoryPages({Key key, this.total}) : super(key: key);
 
   @override
   HistoryPagesState createState() => HistoryPagesState();
 }
 
-class HistoryPagesState extends State<HistoryPages>
-// with AutomaticKeepAliveClientMixin<HistoryPages>
-{
+class HistoryPagesState extends State<HistoryPages> {
+  // with AutomaticKeepAliveClientMixin<HistoryPages> {
   DbHistory dbHistory = DbHistory();
   List<History> historyList;
   int countHistory = 0;
   int countMasker = 0;
+  String button = 'Masukkan Total Masker';
 
   // @override
   // bool get wantKeepAlive => true;
-
+  // @protected
   @override
   Widget build(BuildContext context) {
     // super.build(context);
 
-    var a = TabProvider.of(context).total;
-    a != null ? print('total '+a) : print('masker '+countMasker.toString());
+    int total = TabProvider.of(context).total;
+    countMasker = total;
 
     if (historyList == null) {
       historyList = List<History>();
@@ -54,19 +55,16 @@ class HistoryPagesState extends State<HistoryPages>
           ),
           Align(
               alignment: Alignment.bottomCenter,
-              child: countHistory == 0 ? null : bottomSheet()),
+              child: countMasker == null ? null : bottomSheet()),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 2.0,
         icon: Icon(Icons.add),
-        label: countHistory == 0
-            ? Text('Masukkan Total Masker')
-            : Text('Mulai Timer'),
+        label: countMasker != null ? Text('Mulai Timer') : Text(button),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
-          controller.index = 2;
-          // countHistory == 0 ? controller.index = 1 : controller.index = 2;
+          countMasker == null ? controller.index = 1 : controller.index = 2;
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -112,7 +110,14 @@ class HistoryPagesState extends State<HistoryPages>
           topRight: Radius.circular(30),
         ),
       ),
-      child: Center(child: Text(countMasker.toString())),
+      child: Center(
+        child: Column(
+          children: [
+            Text('Total masker : ' + countMasker.toString()),
+            Text('Total terpakai : ' + countHistory.toString()),
+          ],
+        ),
+      ),
     );
   }
 
