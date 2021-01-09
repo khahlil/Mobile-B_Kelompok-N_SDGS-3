@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TimerPages extends StatefulWidget {
-  const TimerPages({Key key}) : super(key: key);
+  final int total;
+  final ValueChanged<int> changeTotal;
+
+  const TimerPages({Key key, this.total, this.changeTotal}) : super(key: key);
 
   @override
   _TimerPagesState createState() => _TimerPagesState();
@@ -18,10 +21,14 @@ class _TimerPagesState extends State<TimerPages>
 
   DbHistory dbHistory = DbHistory();
   History history;
+  int countMasker = 0;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
+    int total = TabProvider.of(context).total;
+    countMasker = total;
 
     return Scaffold(
       body: Padding(
@@ -66,10 +73,33 @@ class _TimerPagesState extends State<TimerPages>
       textColor: Colors.white,
       splashColor: Colors.yellowAccent[50],
       child: Text('Stop'),
-      onPressed: () {
-        history = History(todayTime(), todayDay(), todayDate());
-        addHistory(history);
+      onPressed: () async {
+        if (countMasker <= 0)
+          showMaterialDialog();
+        else {
+          history = History(todayTime(), todayDay(), todayDate());
+          addHistory(history);
+        }
       },
+    );
+  }
+
+  showMaterialDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text("Masker tidak cukup!"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Tambah'),
+            onPressed: () {
+              Navigator.pop(context);
+              final controller = TabProvider.of(context).tabController;
+              controller.index = 1;
+            },
+          )
+        ],
+      ),
     );
   }
 

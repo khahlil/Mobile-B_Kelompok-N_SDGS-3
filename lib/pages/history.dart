@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 
 class HistoryPages extends StatefulWidget {
   final int total;
-  const HistoryPages({Key key, this.total}) : super(key: key);
+  final ValueChanged<int> changeTotal;
+
+  const HistoryPages({Key key, this.total, this.changeTotal}) : super(key: key);
 
   @override
   HistoryPagesState createState() => HistoryPagesState();
@@ -153,20 +155,21 @@ class HistoryPagesState extends State<HistoryPages> {
 
   showMaterialDialog() {
     showDialog(
-        context: context,
-        builder: (_) => new AlertDialog(
-              title: new Text("Masker sudah habis!"),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('Tambah'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    final controller = TabProvider.of(context).tabController;
-                    controller.index = 1;
-                  },
-                )
-              ],
-            ));
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text("Masker tidak cukup!"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Tambah'),
+            onPressed: () {
+              Navigator.pop(context);
+              final controller = TabProvider.of(context).tabController;
+              controller.index = 1;
+            },
+          )
+        ],
+      ),
+    );
   }
 
   void deleteHistory(History object) async {

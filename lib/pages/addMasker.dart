@@ -118,18 +118,19 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
 
   showMaterialDialog() {
     showDialog(
-        context: context,
-        builder: (_) => new AlertDialog(
-              title: new Text("Invalid input!"),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('Ok'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            ));
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text("Invalid input!"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 
   simpan() {
