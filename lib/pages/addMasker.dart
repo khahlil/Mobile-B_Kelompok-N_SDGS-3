@@ -116,6 +116,22 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
     );
   }
 
+  showMaterialDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("Invalid input!"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ));
+  }
+
   simpan() {
     return RaisedButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -124,9 +140,13 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Simpan'),
       onPressed: () {
-        widget.changeTotal(int.parse(expression));
-        final controller = TabProvider.of(context).tabController;
-        controller.index = 0;
+        if (expression == '0' || expression == '') {
+          showMaterialDialog();
+        } else {
+          widget.changeTotal(int.parse(expression));
+          final controller = TabProvider.of(context).tabController;
+          controller.index = 0;
+        }
       },
     );
   }

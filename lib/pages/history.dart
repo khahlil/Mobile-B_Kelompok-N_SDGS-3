@@ -3,9 +3,8 @@ import 'package:e_Masker/controls/db_history.dart';
 import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/home.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sqflite/sqlite_api.dart';
+import 'package:flutter/material.dart';
 
 class HistoryPages extends StatefulWidget {
   final int total;
@@ -63,8 +62,12 @@ class HistoryPagesState extends State<HistoryPages> {
         icon: Icon(Icons.add),
         label: countMasker != null ? Text('Mulai Timer') : Text(button),
         onPressed: () async {
-          final controller = TabProvider.of(context).tabController;
-          countMasker == null ? controller.index = 1 : controller.index = 2;
+          if (countHistory - countMasker == 0) {
+            showMaterialDialog();
+          } else {
+            final controller = TabProvider.of(context).tabController;
+            countMasker == null ? controller.index = 1 : controller.index = 2;
+          }
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -115,6 +118,7 @@ class HistoryPagesState extends State<HistoryPages> {
           children: [
             Text('Total masker : ' + countMasker.toString()),
             Text('Total terpakai : ' + countHistory.toString()),
+            Text('Sisa masker : ' + (countMasker - countHistory).toString()),
           ],
         ),
       ),
@@ -147,6 +151,24 @@ class HistoryPagesState extends State<HistoryPages> {
     );
   }
 
+  showMaterialDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("Masker sudah habis!"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Tambah'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    final controller = TabProvider.of(context).tabController;
+                    controller.index = 1;
+                  },
+                )
+              ],
+            ));
+  }
+
   void deleteHistory(History object) async {
     int result = await dbHistory.delete(object.id);
     if (result > 0) {
@@ -164,8 +186,8 @@ class HistoryPagesState extends State<HistoryPages> {
   void reset() async {
     await dbHistory.dropDb();
     updateListHistory();
-    countHistory = 0;
     countMasker = 0;
+    Navigator.pop(context);
   }
 
   void updateListHistory() {
