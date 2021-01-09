@@ -1,5 +1,6 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TimerPages extends StatefulWidget {
   const TimerPages({Key key}) : super(key: key);
@@ -13,6 +14,8 @@ class _TimerPagesState extends State<TimerPages>
   @override
   bool get wantKeepAlive => true;
 
+  var now = new DateTime.now();
+
   @protected
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,7 @@ class _TimerPagesState extends State<TimerPages>
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 60),
         child: Container(
+          child: simpan(),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             shape: BoxShape.circle,
@@ -34,6 +38,37 @@ class _TimerPagesState extends State<TimerPages>
           ),
         ),
       ),
+    );
+  }
+
+  todayDate() {
+    var formatter = new DateFormat('dd-MMMM-yyyy').format(now);
+    return formatter;
+  }
+
+  todayTime() {
+    var formatter = new DateFormat('kk:mm:a').format(now);
+    return formatter;
+  }
+
+  todayDay() {
+    var formatter = new DateFormat('EEEE').format(now);
+    return formatter;
+  }
+
+  simpan() {
+    return RaisedButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      color: Colors.blue,
+      textColor: Colors.white,
+      splashColor: Colors.yellowAccent[50],
+      child: Text('Stop'),
+      onPressed: () {
+        todayDate();
+        todayTime();
+        final controller = TabProvider.of(context).tabController;
+        controller.index = 0;
+      },
     );
   }
 }

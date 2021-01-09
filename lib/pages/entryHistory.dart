@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:e_Masker/models/m_history.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class EntryHistory extends StatefulWidget {
   final History history;
@@ -15,6 +16,8 @@ class EntryHistoryState extends State<EntryHistory> {
   History history;
 
   EntryHistoryState(this.history);
+
+  var now = new DateTime.now();
 
   TextEditingController hariController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -91,11 +94,8 @@ class EntryHistoryState extends State<EntryHistory> {
                       child: Text('Save', textScaleFactor: 1.5),
                       onPressed: () {
                         if (history == null) {
-                          history = History(
-                            timeController.text,
-                            hariController.text,
-                            dateController.text,
-                          );
+                          history =
+                              History(todayTime(), todayDay(), todayDate());
                         } else {
                           history.hari = hariController.text;
                           history.date = dateController.text;
@@ -126,5 +126,20 @@ class EntryHistoryState extends State<EntryHistory> {
         ),
       ),
     );
+  }
+
+  todayDate() {
+    var formatter = new DateFormat('dd-MMMM-yyyy').format(now);
+    return formatter;
+  }
+
+  todayTime() {
+    var formatter = new DateFormat('kk:mm:a').format(now);
+    return formatter;
+  }
+
+  todayDay() {
+    var formatter = new DateFormat('EEEE').format(now);
+    return formatter;
   }
 }

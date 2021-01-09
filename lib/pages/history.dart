@@ -17,7 +17,6 @@ class HistoryPages extends StatefulWidget {
 class HistoryPagesState extends State<HistoryPages> {
   DbHistory dbHistory = DbHistory();
   int count = 0;
-  String action = 'Masukkan Total Masker';
   List<History> historyList;
 
   @override
@@ -25,9 +24,6 @@ class HistoryPagesState extends State<HistoryPages> {
     if (historyList == null) {
       historyList = List<History>();
       updateListView();
-    }
-    if (count != 0) {
-      action = 'Mulai Timer';
     }
 
     final bottomSheet = Container(
@@ -63,7 +59,7 @@ class HistoryPagesState extends State<HistoryPages> {
       floatingActionButton: FloatingActionButton.extended(
         elevation: 2.0,
         icon: Icon(Icons.add),
-        label: Text(action),
+        label: count == 0 ? Text('Masukkan Total Masker') : Text('Mulai Timer'),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
           if (count == 0) {
@@ -161,7 +157,6 @@ class HistoryPagesState extends State<HistoryPages> {
     await dbHistory.dropDb();
     updateListView();
     count = 0;
-    action = 'Masukkan Total Masker';
   }
 
   void updateListView() {
