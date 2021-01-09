@@ -1,5 +1,6 @@
 import 'package:e_Masker/pages/addMasker.dart';
 import 'package:e_Masker/pages/history.dart';
+import 'package:e_Masker/pages/timer.dart';
 import 'package:flutter/material.dart';
 
 class TabPages extends StatefulWidget {
@@ -28,7 +29,7 @@ class TabPagesState extends State<TabPages>
 
   @override
   void initState() {
-    _controller = TabController(length: 2, vsync: this);
+    _controller = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -46,7 +47,7 @@ class TabPagesState extends State<TabPages>
         tabController: _controller,
         child: TabBarView(
           controller: _controller,
-          children: [HistoryPages(), AddMaskerPages()],
+          children: [HistoryPages(), AddMaskerPages(), TimerPages()],
         ),
       ),
     );
@@ -58,7 +59,8 @@ class TabPagesState extends State<TabPages>
         controller: _controller,
         tabs: [
           Tab(icon: Icon(Icons.assignment)),
-          Tab(icon: Icon(Icons.edit))
+          Tab(icon: Icon(Icons.edit)),
+          Tab(icon: Icon(Icons.timer))
         ],
       ),
     );

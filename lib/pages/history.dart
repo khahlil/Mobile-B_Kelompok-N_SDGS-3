@@ -4,6 +4,7 @@ import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:sqflite/sqlite_api.dart';
+import 'package:e_Masker/pages/tab.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPages extends StatefulWidget {
@@ -16,6 +17,7 @@ class HistoryPages extends StatefulWidget {
 class HistoryPagesState extends State<HistoryPages> {
   DbHistory dbHistory = DbHistory();
   int count = 0;
+  String action = 'Masukkan Total Masker';
   List<History> historyList;
 
   @override
@@ -23,6 +25,9 @@ class HistoryPagesState extends State<HistoryPages> {
     if (historyList == null) {
       historyList = List<History>();
       updateListView();
+    }
+    if (count != 0) {
+      action = 'Mulai Timer';
     }
 
     final bottomSheet = Container(
@@ -57,11 +62,17 @@ class HistoryPagesState extends State<HistoryPages> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 2.0,
-        icon: const Icon(Icons.add),
-        label: const Text('Masukkan Total Masker'),
+        icon: Icon(Icons.add),
+        label: Text(action),
         onPressed: () async {
-          var history = await navigateToEntryForm(context, null);
-          if (history != null) addHistory(history);
+          final controller = TabProvider.of(context).tabController;
+          if (count == 0) {
+            // controller.index = 1;
+            var history = await navigateToEntryForm(context, null);
+            if (history != null) addHistory(history);
+          } else {
+            controller.index = 2;
+          }
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -149,6 +160,8 @@ class HistoryPagesState extends State<HistoryPages> {
   void reset() async {
     await dbHistory.dropDb();
     updateListView();
+    count = 0;
+    action = 'Masukkan Total Masker';
   }
 
   void updateListView() {
