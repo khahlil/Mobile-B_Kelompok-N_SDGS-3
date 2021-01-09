@@ -28,7 +28,7 @@ class TabPagesState extends State<TabPages>
 
   @override
   void initState() {
-    _controller = TabController(length: 3, vsync: this);
+    _controller = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -46,7 +46,7 @@ class TabPagesState extends State<TabPages>
         tabController: _controller,
         child: TabBarView(
           controller: _controller,
-          children: [HistoryPages(), AddMaskerPages(), AddMaskerPages()],
+          children: [HistoryPages(), AddMaskerPages()],
         ),
       ),
     );
@@ -58,8 +58,7 @@ class TabPagesState extends State<TabPages>
         controller: _controller,
         tabs: [
           Tab(icon: Icon(Icons.assignment)),
-          Tab(icon: Icon(Icons.edit)),
-          Tab(icon: Icon(Icons.alarm))
+          Tab(icon: Icon(Icons.edit))
         ],
       ),
     );

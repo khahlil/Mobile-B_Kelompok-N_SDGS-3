@@ -124,7 +124,7 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       child: Text('Simpan'),
       onPressed: () {
         final controller = TabProvider.of(context).tabController;
-        controller.index = 1;
+        controller.index = 0;
       },
     );
   }
