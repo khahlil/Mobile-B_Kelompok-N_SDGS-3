@@ -12,8 +12,9 @@ class TabProvider extends InheritedWidget {
   final TabController tabController;
   final Widget child;
   final int total;
+  final int history;
 
-  TabProvider({this.tabController, this.child, this.total});
+  TabProvider({this.tabController, this.child, this.total, this.history});
 
   @override
   bool updateShouldNotify(TabProvider oldWidget) {
@@ -27,7 +28,8 @@ class TabProvider extends InheritedWidget {
 class TabPagesState extends State<TabPages>
     with SingleTickerProviderStateMixin {
   TabController _controller;
-  int updateTotal;
+  int updateTotal = 0;
+  int updateHistory = 0;
 
   @override
   void initState() {
@@ -47,6 +49,12 @@ class TabPagesState extends State<TabPages>
     });
   }
 
+  changedHistory(int text) {
+    setState(() {
+      updateHistory = text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +62,11 @@ class TabPagesState extends State<TabPages>
       body: TabProvider(
         tabController: _controller,
         total: updateTotal,
+        history: updateHistory,
         child: TabBarView(
           controller: _controller,
           children: [
-            HistoryPages(),
+            HistoryPages(changeHistory: changedHistory),
             AddMaskerPages(changeTotal: changedTotal),
             TimerPages()
           ],

@@ -6,9 +6,11 @@ import 'package:intl/intl.dart';
 
 class TimerPages extends StatefulWidget {
   final int total;
+  final int history;
   final ValueChanged<int> changeTotal;
 
-  const TimerPages({Key key, this.total, this.changeTotal}) : super(key: key);
+  const TimerPages({Key key, this.total, this.changeTotal, this.history})
+      : super(key: key);
 
   @override
   _TimerPagesState createState() => _TimerPagesState();
@@ -22,6 +24,7 @@ class _TimerPagesState extends State<TimerPages> {
   DbHistory dbHistory = DbHistory();
   History history;
   int countMasker = 0;
+  int countHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,8 @@ class _TimerPagesState extends State<TimerPages> {
 
     int total = TabProvider.of(context).total;
     countMasker = total;
+    int history = TabProvider.of(context).history;
+    history != null ? countHistory = history : countHistory = 0;
 
     return Scaffold(
       body: Padding(
@@ -74,7 +79,7 @@ class _TimerPagesState extends State<TimerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Stop'),
       onPressed: () async {
-        if (countMasker <= 0)
+        if (countMasker - countHistory <= 0)
           showMaterialDialog();
         else {
           history = History(todayTime(), todayDay(), todayDate());

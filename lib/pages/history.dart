@@ -9,8 +9,11 @@ import 'package:flutter/material.dart';
 class HistoryPages extends StatefulWidget {
   final int total;
   final ValueChanged<int> changeTotal;
+  final ValueChanged<int> changeHistory;
 
-  const HistoryPages({Key key, this.total, this.changeTotal}) : super(key: key);
+  const HistoryPages(
+      {Key key, this.total, this.changeTotal, this.changeHistory})
+      : super(key: key);
 
   @override
   HistoryPagesState createState() => HistoryPagesState();
@@ -26,11 +29,10 @@ class HistoryPagesState extends State<HistoryPages> {
 
   // @override
   // bool get wantKeepAlive => true;
-  // @protected
+
   @override
   Widget build(BuildContext context) {
     // super.build(context);
-
     int total = TabProvider.of(context).total;
     countMasker = total;
 
@@ -55,8 +57,9 @@ class HistoryPagesState extends State<HistoryPages> {
             ),
           ),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: countMasker == null ? null : bottomSheet()),
+            alignment: Alignment.bottomCenter,
+            child: countMasker == null ? null : bottomSheet(),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -106,22 +109,37 @@ class HistoryPagesState extends State<HistoryPages> {
 
   Widget bottomSheet() {
     return Container(
-      height: 100,
+      height: 110,
       width: 720,
       decoration: BoxDecoration(
-        color: Colors.purple[100],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            blurRadius: 10.0,
+            spreadRadius: 0.4,
+            offset: Offset.zero,
+          )
+        ],
+        color: Colors.lightBlue[100],
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
       ),
       child: Center(
-        child: Column(
-          children: [
-            Text('Total masker : ' + countMasker.toString()),
-            Text('Total terpakai : ' + countHistory.toString()),
-            Text('Sisa masker : ' + (countMasker - countHistory).toString()),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Total masker   : ........................ ' +
+                  countMasker.toString()),
+              Text('Total terpakai : ........................ ' +
+                  countHistory.toString()),
+              Text('Sisa masker    : ........................ ' +
+                  (countMasker - countHistory).toString()),
+            ],
+          ),
         ),
       ),
     );
@@ -179,13 +197,6 @@ class HistoryPagesState extends State<HistoryPages> {
     }
   }
 
-  void addHistory(History object) async {
-    int result = await dbHistory.insert(object);
-    if (result > 0) {
-      updateListHistory();
-    }
-  }
-
   void reset() async {
     await dbHistory.dropDb();
     updateListHistory();
@@ -201,6 +212,7 @@ class HistoryPagesState extends State<HistoryPages> {
         setState(() {
           this.historyList = historyList;
           this.countHistory = historyList.length;
+          widget.changeHistory(countHistory);
         });
       });
     });
