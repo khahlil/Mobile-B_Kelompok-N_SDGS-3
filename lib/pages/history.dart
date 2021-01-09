@@ -4,10 +4,10 @@ import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqlite_api.dart';
 
 class HistoryPages extends StatefulWidget {
-  final int total;
-
+  final String total;
   const HistoryPages({Key key, this.total}) : super(key: key);
 
   @override
@@ -15,37 +15,26 @@ class HistoryPages extends StatefulWidget {
 }
 
 class HistoryPagesState extends State<HistoryPages>
-    with AutomaticKeepAliveClientMixin<HistoryPages> {
+// with AutomaticKeepAliveClientMixin<HistoryPages>
+{
   DbHistory dbHistory = DbHistory();
   List<History> historyList;
   int countHistory = 0;
   int countMasker = 0;
 
+  // @override
+  // bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    // super.build(context);
 
-    final total = TabProvider.of(context).total;
-    total == 0 ? countMasker = 0 : countMasker = total;
+    var a = TabProvider.of(context).total;
+    a != null ? print('total '+a) : print('masker '+countMasker.toString());
 
     if (historyList == null) {
       historyList = List<History>();
       updateListHistory();
-    }
-
-    bottomSheet() {
-      return Container(
-        height: 100,
-        width: 720,
-        decoration: BoxDecoration(
-          color: Colors.purple[100],
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-        ),
-        child: Center(child: Text(countMasker.toString())),
-      );
     }
 
     return Scaffold(
@@ -58,7 +47,7 @@ class HistoryPagesState extends State<HistoryPages>
               padding: EdgeInsets.all(10),
               children: <Widget>[
                 SingleChildScrollView(
-                  child: Container(child: _buildPanel()),
+                  child: Container(child: buildPanel()),
                 ),
               ],
             ),
@@ -76,7 +65,8 @@ class HistoryPagesState extends State<HistoryPages>
             : Text('Mulai Timer'),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
-          countHistory == 0 ? controller.index = 1 : controller.index = 2;
+          controller.index = 2;
+          // countHistory == 0 ? controller.index = 1 : controller.index = 2;
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -111,16 +101,30 @@ class HistoryPagesState extends State<HistoryPages>
     );
   }
 
-  Widget _buildPanel() {
+  Widget bottomSheet() {
+    return Container(
+      height: 100,
+      width: 720,
+      decoration: BoxDecoration(
+        color: Colors.purple[100],
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      child: Center(child: Text(countMasker.toString())),
+    );
+  }
+
+  Widget buildPanel() {
     return ExpansionPanelList.radio(
       dividerColor: Colors.green,
-      initialOpenPanelValue: 0,
       children: historyList.map<ExpansionPanelRadio>((History item) {
         return ExpansionPanelRadio(
           value: item.id,
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
-              title: Text('Hari ' + item.hari,
+              title: Text(item.hari + ' - ' + item.time,
                   style: Theme.of(context).textTheme.bodyText2),
             );
           },
@@ -145,6 +149,13 @@ class HistoryPagesState extends State<HistoryPages>
     }
   }
 
+  void addHistory(History object) async {
+    int result = await dbHistory.insert(object);
+    if (result > 0) {
+      updateListHistory();
+    }
+  }
+
   void reset() async {
     await dbHistory.dropDb();
     updateListHistory();
@@ -153,7 +164,8 @@ class HistoryPagesState extends State<HistoryPages>
   }
 
   void updateListHistory() {
-    dbHistory.initDb().then((database) {
+    Future<Database> dbFuture = dbHistory.initDb();
+    dbFuture.then((database) {
       Future<List<History>> historyListFuture = dbHistory.getHistoryList();
       historyListFuture.then((historyList) {
         setState(() {
@@ -163,7 +175,4 @@ class HistoryPagesState extends State<HistoryPages>
       });
     });
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

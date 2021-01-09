@@ -3,26 +3,25 @@ import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:flutter/material.dart';
 
 class AddMaskerPages extends StatefulWidget {
-  final ValueChanged<int> total;
-
-  const AddMaskerPages({Key key, this.total}) : super(key: key);
+  final ValueChanged<String> changeTotal;
+  const AddMaskerPages({Key key, this.changeTotal}) : super(key: key);
 
   @override
   _AddMaskerPagesState createState() => _AddMaskerPagesState();
 }
 
 class _AddMaskerPagesState extends State<AddMaskerPages> {
-  String _expression = '';
+  String expression = '';
 
   void numClick(String text) {
     setState(() {
-      _expression += text;
+      expression += text;
     });
   }
 
   void clear() {
     setState(() {
-      _expression = '';
+      expression = '';
     });
   }
 
@@ -37,7 +36,7 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
           SizedBox(height: 50.0),
           Container(
             child:
-                Text(_expression, style: Theme.of(context).textTheme.subtitle1),
+                Text(expression, style: Theme.of(context).textTheme.subtitle1),
           ),
           pemisah(),
           SizedBox(height: 20.0),
@@ -126,7 +125,7 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Simpan'),
       onPressed: () {
-        widget.total(int.parse(_expression));
+        widget.changeTotal(expression);
         final controller = TabProvider.of(context).tabController;
         controller.index = 0;
       },
