@@ -1,35 +1,36 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:e_Masker/controls/db_history.dart';
-import 'package:e_Masker/controls/db_masker.dart';
 import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
-import 'package:e_Masker/models/m_masker.dart';
 import 'package:e_Masker/pages/home.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPages extends StatefulWidget {
-  const HistoryPages({Key key}) : super(key: key);
+  final int total;
+
+  const HistoryPages({Key key, this.total}) : super(key: key);
 
   @override
   HistoryPagesState createState() => HistoryPagesState();
 }
 
-class HistoryPagesState extends State<HistoryPages> {
+class HistoryPagesState extends State<HistoryPages>
+    with AutomaticKeepAliveClientMixin<HistoryPages> {
   DbHistory dbHistory = DbHistory();
-  DbMasker dbMasker = DbMasker();
   List<History> historyList;
-  List<Masker> maskerList;
   int countHistory = 0;
   int countMasker = 0;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
+    final total = TabProvider.of(context).total;
+    total == 0 ? countMasker = 0 : countMasker = total;
+
     if (historyList == null) {
       historyList = List<History>();
-      maskerList = List<Masker>();
       updateListHistory();
-      // updateListMasker();
     }
 
     bottomSheet() {
@@ -43,7 +44,7 @@ class HistoryPagesState extends State<HistoryPages> {
             topRight: Radius.circular(30),
           ),
         ),
-        child: Center(child: Text('maskerList.toString()')),
+        child: Center(child: Text(countMasker.toString())),
       );
     }
 
@@ -146,7 +147,6 @@ class HistoryPagesState extends State<HistoryPages> {
 
   void reset() async {
     await dbHistory.dropDb();
-    // await dbMasker.dropDb();
     updateListHistory();
     countHistory = 0;
     countMasker = 0;
@@ -164,16 +164,6 @@ class HistoryPagesState extends State<HistoryPages> {
     });
   }
 
-  // void updateListMasker() {
-  //   Future<Database> dbFuture = dbMasker.initDb();
-  //   dbFuture.then((database) {
-  //     Future<List<Masker>> maskerListFuture = dbMasker.getMaskerList();
-  //     maskerListFuture.then((maskerList) {
-  //       setState(() {
-  //         this.maskerList = maskerList;
-  //         this.countMasker = maskerList.length;
-  //       });
-  //     });
-  //   });
-  // }
+  @override
+  bool get wantKeepAlive => true;
 }

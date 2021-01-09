@@ -11,8 +11,9 @@ class TabPages extends StatefulWidget {
 class TabProvider extends InheritedWidget {
   final TabController tabController;
   final Widget child;
+  final int total;
 
-  TabProvider({this.tabController, this.child});
+  TabProvider({this.tabController, this.child, this.total});
 
   @override
   bool updateShouldNotify(TabProvider oldWidget) {
@@ -26,6 +27,7 @@ class TabProvider extends InheritedWidget {
 class TabPagesState extends State<TabPages>
     with SingleTickerProviderStateMixin {
   TabController _controller;
+  int total;
 
   @override
   void initState() {
@@ -37,6 +39,12 @@ class TabPagesState extends State<TabPages>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  totalMasker(int text) {
+    setState(() {
+      total = text;
+    });
   }
 
   @override

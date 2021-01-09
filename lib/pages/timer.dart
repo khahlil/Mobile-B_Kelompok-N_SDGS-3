@@ -19,10 +19,10 @@ class _TimerPagesState extends State<TimerPages>
   DbHistory dbHistory = DbHistory();
   History history;
 
-  @protected
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 60),

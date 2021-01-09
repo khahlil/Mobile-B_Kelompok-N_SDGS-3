@@ -1,20 +1,18 @@
 import 'package:e_Masker/pages/child/part_addMasker.dart';
 import 'package:e_Masker/controls/tabcontroller.dart';
-import 'package:e_Masker/controls/db_masker.dart';
-import 'package:e_Masker/models/m_masker.dart';
 import 'package:flutter/material.dart';
 
 class AddMaskerPages extends StatefulWidget {
-  const AddMaskerPages({Key key}) : super(key: key);
+  final ValueChanged<int> total;
+
+  const AddMaskerPages({Key key, this.total}) : super(key: key);
 
   @override
   _AddMaskerPagesState createState() => _AddMaskerPagesState();
 }
 
 class _AddMaskerPagesState extends State<AddMaskerPages> {
-  DbMasker dbMasker = DbMasker();
   String _expression = '';
-  Masker masker;
 
   void numClick(String text) {
     setState(() {
@@ -128,19 +126,10 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Simpan'),
       onPressed: () {
-        masker = Masker(_expression.toString());
-        addMasker(masker);
+        widget.total(int.parse(_expression));
+        final controller = TabProvider.of(context).tabController;
+        controller.index = 0;
       },
     );
-  }
-
-  void addMasker(Masker object) async {
-    // await dbMasker.dropDb();
-    // dbMasker.initDb();
-    int result = await dbMasker.insert(object);
-    if (result > 0) {
-      final controller = TabProvider.of(context).tabController;
-      controller.index = 0;
-    }
   }
 }
