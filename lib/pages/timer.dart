@@ -66,6 +66,11 @@ class _TimerPagesState extends State<TimerPages> {
     return formatter;
   }
 
+  todayLap() {
+    var formatter = new DateFormat('kk:mm:a').format(DateTime.now());
+    return formatter;
+  }
+
   todayDay() {
     var formatter = new DateFormat('EEEE').format(DateTime.now());
     return formatter;
@@ -82,7 +87,7 @@ class _TimerPagesState extends State<TimerPages> {
         if (countMasker - countHistory <= 0)
           showMaterialDialog();
         else {
-          history = History(todayTime(), todayDay(), todayDate());
+          history = History(todayLap(), todayTime(), todayDay(), todayDate());
           addHistory(history);
         }
       },

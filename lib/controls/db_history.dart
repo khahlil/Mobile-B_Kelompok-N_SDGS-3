@@ -33,7 +33,8 @@ class DbHistory {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         hari TEXT,
         date TEXT,
-        time TEXT
+        time TEXT,
+        lap TEXT
       )
     ''');
   }

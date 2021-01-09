@@ -58,18 +58,18 @@ class HistoryPagesState extends State<HistoryPages> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: countMasker == null ? null : bottomSheet(),
+            child: countMasker == 0 ? null : bottomSheet(),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 2.0,
         icon: Icon(Icons.add),
-        label: countMasker != null ? Text('Mulai Timer') : Text(button),
+        label: countMasker != 0 ? Text('Mulai Timer') : Text(button),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
-          if (countMasker == null) controller.index = 1;
-          if ((countMasker - countHistory) <= 0)
+          if (countMasker == 0) controller.index = 1;
+          if ((countMasker - countHistory) <= 0 && countHistory > 0)
             showMaterialDialog();
           else
             controller.index = 2;
@@ -160,7 +160,7 @@ class HistoryPagesState extends State<HistoryPages> {
           body: ListTile(
               title: Text('Tanggal : ' + item.date,
                   style: Theme.of(context).textTheme.bodyText2),
-              subtitle: Text('Lama Pemakaian : ' + item.time,
+              subtitle: Text('Lama Pemakaian : ' + item.lap,
                   style: Theme.of(context).textTheme.bodyText1),
               trailing: Icon(Icons.delete),
               onTap: () {
@@ -213,6 +213,7 @@ class HistoryPagesState extends State<HistoryPages> {
           this.historyList = historyList;
           this.countHistory = historyList.length;
           widget.changeHistory(countHistory);
+          print(countHistory.toString() + '-' + countMasker.toString());
         });
       });
     });
