@@ -1,7 +1,9 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:e_Masker/controls/db_history.dart';
+import 'package:e_Masker/controls/db_masker.dart';
 import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
+import 'package:e_Masker/models/m_masker.dart';
 import 'package:e_Masker/pages/home.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:flutter/material.dart';
@@ -15,51 +17,65 @@ class HistoryPages extends StatefulWidget {
 
 class HistoryPagesState extends State<HistoryPages> {
   DbHistory dbHistory = DbHistory();
+  DbMasker dbMasker = DbMasker();
   List<History> historyList;
-  int count = 0;
+  List<Masker> maskerList;
+  int countHistory = 0;
+  int countMasker = 0;
 
   @override
   Widget build(BuildContext context) {
     if (historyList == null) {
       historyList = List<History>();
-      updateListView();
+      maskerList = List<Masker>();
+      updateListHistory();
+      // updateListMasker();
     }
 
-    final bottomSheet = Container(
-      height: 200,
-      width: 720,
-      decoration: BoxDecoration(
-        color: Colors.purple[100],
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+    bottomSheet() {
+      return Container(
+        height: 100,
+        width: 720,
+        decoration: BoxDecoration(
+          color: Colors.purple[100],
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
         ),
-      ),
-      child: Center(child: Text('total masker')),
-    );
+        child: Center(child: Text('maskerList.toString()')),
+      );
+    }
 
     return Scaffold(
       body: Stack(
         children: [
-          ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.all(10),
-            children: <Widget>[
-              SingleChildScrollView(
-                child: Container(child: _buildPanel()),
-              ),
-            ],
+          Container(
+            padding: EdgeInsets.only(bottom: 100.0),
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(10),
+              children: <Widget>[
+                SingleChildScrollView(
+                  child: Container(child: _buildPanel()),
+                ),
+              ],
+            ),
           ),
-          Align(alignment: Alignment.bottomCenter, child: bottomSheet),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: countHistory == 0 ? null : bottomSheet()),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 2.0,
         icon: Icon(Icons.add),
-        label: count == 0 ? Text('Masukkan Total Masker') : Text('Mulai Timer'),
+        label: countHistory == 0
+            ? Text('Masukkan Total Masker')
+            : Text('Mulai Timer'),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
-          count == 0 ? controller.index = 1 : controller.index = 2;
+          countHistory == 0 ? controller.index = 1 : controller.index = 2;
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -124,26 +140,40 @@ class HistoryPagesState extends State<HistoryPages> {
   void deleteHistory(History object) async {
     int result = await dbHistory.delete(object.id);
     if (result > 0) {
-      updateListView();
+      updateListHistory();
     }
   }
 
   void reset() async {
     await dbHistory.dropDb();
-    updateListView();
-    count = 0;
+    // await dbMasker.dropDb();
+    updateListHistory();
+    countHistory = 0;
+    countMasker = 0;
   }
 
-  void updateListView() {
-    Future<Database> dbFuture = dbHistory.initDb();
-    dbFuture.then((database) {
+  void updateListHistory() {
+    dbHistory.initDb().then((database) {
       Future<List<History>> historyListFuture = dbHistory.getHistoryList();
       historyListFuture.then((historyList) {
         setState(() {
           this.historyList = historyList;
-          this.count = historyList.length;
+          this.countHistory = historyList.length;
         });
       });
     });
   }
+
+  // void updateListMasker() {
+  //   Future<Database> dbFuture = dbMasker.initDb();
+  //   dbFuture.then((database) {
+  //     Future<List<Masker>> maskerListFuture = dbMasker.getMaskerList();
+  //     maskerListFuture.then((maskerList) {
+  //       setState(() {
+  //         this.maskerList = maskerList;
+  //         this.countMasker = maskerList.length;
+  //       });
+  //     });
+  //   });
+  // }
 }

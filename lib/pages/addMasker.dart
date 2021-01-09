@@ -128,9 +128,19 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Simpan'),
       onPressed: () {
-        final controller = TabProvider.of(context).tabController;
-        controller.index = 0;
+        masker = Masker(_expression.toString());
+        addMasker(masker);
       },
     );
+  }
+
+  void addMasker(Masker object) async {
+    // await dbMasker.dropDb();
+    // dbMasker.initDb();
+    int result = await dbMasker.insert(object);
+    if (result > 0) {
+      final controller = TabProvider.of(context).tabController;
+      controller.index = 0;
+    }
   }
 }

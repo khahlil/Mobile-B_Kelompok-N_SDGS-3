@@ -17,7 +17,7 @@ class DbMasker {
 
   Future<Database> initDb() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'masker.db';
+    String path = directory.path + 'history.db';
     var todoDatabase = openDatabase(path, version: 1, onCreate: _createDb);
     return todoDatabase;
   }
@@ -36,11 +36,11 @@ class DbMasker {
     ''');
   }
 
-  Future<Database> dropDb() async {
-    Database db = await this.database;
-    await db.delete('masker');
-    return _database;
-  }
+  // Future<Database> dropDb() async {
+  //   Database db = await this.database;
+  //   await db.delete('masker');
+  //   return _database;
+  // }
 
   Future<List<Map<String, dynamic>>> select() async {
     Database db = await this.database;
