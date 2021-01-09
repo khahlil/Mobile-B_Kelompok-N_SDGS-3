@@ -66,7 +66,7 @@ class HistoryPagesState extends State<HistoryPages> {
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
           if (countMasker == null) controller.index = 1;
-          if ((countHistory - countMasker) <= 0)
+          if ((countMasker - countHistory) <= 0)
             showMaterialDialog();
           else
             controller.index = 2;

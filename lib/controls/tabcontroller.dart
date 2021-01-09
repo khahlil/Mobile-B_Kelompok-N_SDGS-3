@@ -43,7 +43,7 @@ class TabPagesState extends State<TabPages>
 
   changedTotal(int text) {
     setState(() {
-      updateTotal = text;
+      updateTotal += text;
     });
   }
 

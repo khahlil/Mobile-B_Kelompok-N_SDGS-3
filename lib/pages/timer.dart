@@ -14,10 +14,10 @@ class TimerPages extends StatefulWidget {
   _TimerPagesState createState() => _TimerPagesState();
 }
 
-class _TimerPagesState extends State<TimerPages>
-    with AutomaticKeepAliveClientMixin<TimerPages> {
-  @override
-  bool get wantKeepAlive => true;
+class _TimerPagesState extends State<TimerPages> {
+  // with AutomaticKeepAliveClientMixin<TimerPages> {
+  // @override
+  // bool get wantKeepAlive => true;
 
   DbHistory dbHistory = DbHistory();
   History history;
@@ -25,7 +25,7 @@ class _TimerPagesState extends State<TimerPages>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    // super.build(context);
 
     int total = TabProvider.of(context).total;
     countMasker = total;
