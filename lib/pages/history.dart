@@ -1,6 +1,5 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:e_Masker/controls/db_history.dart';
-import 'package:e_Masker/pages/entryHistory.dart';
 import 'package:e_Masker/models/m_history.dart';
 import 'package:e_Masker/controls/router.dart';
 import 'package:e_Masker/pages/home.dart';
@@ -16,8 +15,8 @@ class HistoryPages extends StatefulWidget {
 
 class HistoryPagesState extends State<HistoryPages> {
   DbHistory dbHistory = DbHistory();
-  int count = 0;
   List<History> historyList;
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +46,7 @@ class HistoryPagesState extends State<HistoryPages> {
             padding: EdgeInsets.all(10),
             children: <Widget>[
               SingleChildScrollView(
-                child: Container(
-                  child: _buildPanel(),
-                ),
+                child: Container(child: _buildPanel()),
               ),
             ],
           ),
@@ -62,13 +59,7 @@ class HistoryPagesState extends State<HistoryPages> {
         label: count == 0 ? Text('Masukkan Total Masker') : Text('Mulai Timer'),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
-          if (count == 0) {
-            // controller.index = 1;
-            var history = await navigateToEntryForm(context, null);
-            if (history != null) addHistory(history);
-          } else {
-            controller.index = 2;
-          }
+          count == 0 ? controller.index = 1 : controller.index = 2;
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -130,24 +121,8 @@ class HistoryPagesState extends State<HistoryPages> {
     );
   }
 
-  Future<History> navigateToEntryForm(
-      BuildContext context, History history) async {
-    var result = await Navigator.push(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-      return EntryHistory(history);
-    }));
-    return result;
-  }
-
   void deleteHistory(History object) async {
     int result = await dbHistory.delete(object.id);
-    if (result > 0) {
-      updateListView();
-    }
-  }
-
-  void addHistory(History object) async {
-    int result = await dbHistory.insert(object);
     if (result > 0) {
       updateListView();
     }

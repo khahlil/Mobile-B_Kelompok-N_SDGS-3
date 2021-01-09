@@ -1,4 +1,6 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
+import 'package:e_Masker/controls/db_history.dart';
+import 'package:e_Masker/models/m_history.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -14,6 +16,8 @@ class _TimerPagesState extends State<TimerPages>
   @override
   bool get wantKeepAlive => true;
 
+  DbHistory dbHistory = DbHistory();
+  History history;
   var now = new DateTime.now();
 
   @protected
@@ -64,11 +68,18 @@ class _TimerPagesState extends State<TimerPages>
       splashColor: Colors.yellowAccent[50],
       child: Text('Stop'),
       onPressed: () {
-        todayDate();
-        todayTime();
-        final controller = TabProvider.of(context).tabController;
-        controller.index = 0;
+        history = History(todayTime(), todayDay(), todayDate());
+        addHistory(history);
       },
     );
+  }
+
+  void addHistory(History object) async {
+    await dbHistory.initDb();
+    int result = await dbHistory.insert(object);
+    if (result > 0) {
+      final controller = TabProvider.of(context).tabController;
+      controller.index = 0;
+    }
   }
 }
