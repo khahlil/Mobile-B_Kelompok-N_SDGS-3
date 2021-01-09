@@ -7,6 +7,8 @@ import 'package:sqflite/sqlite_api.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPages extends StatefulWidget {
+  const HistoryPages({Key key}) : super(key: key);
+
   @override
   HistoryPagesState createState() => HistoryPagesState();
 }

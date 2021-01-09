@@ -3,6 +3,8 @@ import 'package:e_Masker/pages/tab.dart';
 import 'package:flutter/material.dart';
 
 class AddMaskerPages extends StatefulWidget {
+  const AddMaskerPages({Key key}) : super(key: key);
+
   @override
   _AddMaskerPagesState createState() => _AddMaskerPagesState();
 }
