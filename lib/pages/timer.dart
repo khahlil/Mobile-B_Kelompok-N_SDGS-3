@@ -39,7 +39,7 @@ class _TimerPagesState extends State<TimerPages> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 60),
         child: Container(
-          child: simpan(),
+          child: Column(children: [start(), stop()]),
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             shape: BoxShape.circle,
@@ -66,8 +66,19 @@ class _TimerPagesState extends State<TimerPages> {
     return formatter;
   }
 
-  todayLap() {
-    var formatter = new DateFormat('kk:mm:a').format(DateTime.now());
+  todayLap(DateTime now, DateTime lap) {
+    int res = now.difference(lap).inMilliseconds;
+    // var formatter =
+    return res;
+  }
+
+  timeNow() {
+    DateTime formatter = new DateTime.now();
+    return formatter;
+  }
+
+  timeLap() {
+    DateTime formatter = new DateTime.now();
     return formatter;
   }
 
@@ -76,7 +87,21 @@ class _TimerPagesState extends State<TimerPages> {
     return formatter;
   }
 
-  simpan() {
+  DateTime now;
+  start() {
+    return RaisedButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      color: Colors.red[200],
+      textColor: Colors.white,
+      splashColor: Colors.yellowAccent[50],
+      child: Text('Start'),
+      onPressed: () {
+        now = timeNow();
+      },
+    );
+  }
+
+  stop() {
     return RaisedButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       color: Colors.blue,
@@ -84,10 +109,12 @@ class _TimerPagesState extends State<TimerPages> {
       splashColor: Colors.yellowAccent[50],
       child: Text('Stop'),
       onPressed: () async {
+        DateTime lap = timeLap();
         if (countMasker - countHistory <= 0)
           showMaterialDialog();
         else {
-          history = History(todayLap(), todayTime(), todayDay(), todayDate());
+          history = History(todayTime(), todayLap(now, lap).toString(),
+              todayDay(), todayDate());
           addHistory(history);
         }
       },

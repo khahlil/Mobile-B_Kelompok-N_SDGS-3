@@ -68,11 +68,10 @@ class HistoryPagesState extends State<HistoryPages> {
         label: countMasker != 0 ? Text('Mulai Timer') : Text(button),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
-          if (countMasker == 0) controller.index = 1;
+          if (countMasker == 0 && countHistory == 0) controller.index = 1;
+          if (countMasker > 0 && countHistory <= 0) controller.index = 2;
           if ((countMasker - countHistory) <= 0 && countHistory > 0)
             showMaterialDialog();
-          else
-            controller.index = 2;
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -213,7 +212,7 @@ class HistoryPagesState extends State<HistoryPages> {
           this.historyList = historyList;
           this.countHistory = historyList.length;
           widget.changeHistory(countHistory);
-          print(countHistory.toString() + '-' + countMasker.toString());
+          print(countMasker.toString() + '-' + countHistory.toString());
         });
       });
     });
