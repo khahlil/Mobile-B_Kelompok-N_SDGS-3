@@ -1,8 +1,7 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
+import 'package:e_Masker/controls/sharedPref.dart';
 import 'package:e_Masker/controls/db_history.dart';
 import 'package:e_Masker/models/m_history.dart';
-import 'package:e_Masker/controls/router.dart';
-import 'package:e_Masker/pages/home.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:flutter/material.dart';
 
@@ -20,19 +19,14 @@ class HistoryPages extends StatefulWidget {
 }
 
 class HistoryPagesState extends State<HistoryPages> {
-  // with AutomaticKeepAliveClientMixin<HistoryPages> {
   DbHistory dbHistory = DbHistory();
   List<History> historyList;
   int countHistory = 0;
   int countMasker = 0;
   String button = 'Masukkan Total Masker';
 
-  // @override
-  // bool get wantKeepAlive => true;
-
   @override
   Widget build(BuildContext context) {
-    // super.build(context);
     int total = TabProvider.of(context).total;
     countMasker = total;
 
@@ -51,7 +45,7 @@ class HistoryPagesState extends State<HistoryPages> {
               padding: EdgeInsets.all(10),
               children: <Widget>[
                 SingleChildScrollView(
-                  child: Container(child: buildPanel()),
+                  child: Container(child: expandPanel()),
                 ),
               ],
             ),
@@ -83,22 +77,16 @@ class HistoryPagesState extends State<HistoryPages> {
             IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                Router.changePage(context, HomePages());
+                Navigator.pop(context);
               },
             ),
-            DropdownButton<String>(
-              icon: Icon(Icons.more_vert),
-              items: [
-                DropdownMenuItem(
-                  value: '',
-                  child: Text("Reset",
-                      style: Theme.of(context).textTheme.subtitle2),
-                  onTap: () {
-                    reset();
-                  },
-                ),
-              ],
-              onChanged: (value) {},
+            FlatButton(
+              child:
+                  Text("Reset", style: Theme.of(context).textTheme.subtitle2),
+              onPressed: () {
+                reset();
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
@@ -106,45 +94,7 @@ class HistoryPagesState extends State<HistoryPages> {
     );
   }
 
-  Widget bottomSheet() {
-    return Container(
-      height: 110,
-      width: 720,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 10.0,
-            spreadRadius: 0.4,
-            offset: Offset.zero,
-          )
-        ],
-        color: Colors.lightBlue[100],
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-      ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Total masker   : ........................ ' +
-                  countMasker.toString()),
-              Text('Total terpakai : ........................ ' +
-                  countHistory.toString()),
-              Text('Sisa masker    : ........................ ' +
-                  (countMasker - countHistory).toString()),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildPanel() {
+  Widget expandPanel() {
     return ExpansionPanelList.radio(
       dividerColor: Colors.green,
       children: historyList.map<ExpansionPanelRadio>((History item) {
@@ -167,6 +117,48 @@ class HistoryPagesState extends State<HistoryPages> {
               }),
         );
       }).toList(),
+    );
+  }
+
+  Widget bottomSheet() {
+    return Container(
+      height: 110,
+      width: 720,
+      decoration: sheetDecoration(),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Total masker   : ........................ ' +
+                  countMasker.toString()),
+              Text('Total terpakai : ........................ ' +
+                  countHistory.toString()),
+              Text('Sisa masker    : ........................ ' +
+                  (countMasker - countHistory).toString()),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  BoxDecoration sheetDecoration() {
+    return BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey,
+          blurRadius: 10.0,
+          spreadRadius: 0.4,
+          offset: Offset.zero,
+        )
+      ],
+      color: Colors.lightBlue[100],
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30),
+      ),
     );
   }
 
@@ -197,10 +189,11 @@ class HistoryPagesState extends State<HistoryPages> {
   }
 
   void reset() async {
+    await SharedPreferencesHelper.getInstance();
+    SharedPreferencesHelper.putInt("totalMasker", 0);
     await dbHistory.dropDb();
     updateListHistory();
     countMasker = 0;
-    Navigator.pop(context);
   }
 
   void updateListHistory() {
@@ -212,7 +205,6 @@ class HistoryPagesState extends State<HistoryPages> {
           this.historyList = historyList;
           this.countHistory = historyList.length;
           widget.changeHistory(countHistory);
-          print(countMasker.toString() + '-' + countHistory.toString());
         });
       });
     });

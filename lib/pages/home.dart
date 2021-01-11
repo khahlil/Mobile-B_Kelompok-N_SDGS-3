@@ -1,7 +1,7 @@
-import 'package:e_Masker/controls/router.dart';
-import 'package:e_Masker/pages/child/posting.dart';
-import 'package:e_Masker/pages/info.dart';
 import 'package:e_Masker/controls/tabcontroller.dart';
+import 'package:e_Masker/pages/child/posting.dart';
+import 'package:e_Masker/controls/router.dart';
+import 'package:e_Masker/pages/info.dart';
 import 'package:flutter/material.dart';
 
 class HomePages extends StatefulWidget {
@@ -14,39 +14,7 @@ class _HomePagesState extends State<HomePages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: Text('Aplikasi e-Masker')),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Center(child: Image.asset('assets/images/logo-copy.png')),
-              decoration: BoxDecoration(color: Colors.purple[50]),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.timer),
-              title: Text('Timer'),
-              onTap: () {
-                Navigator.pop(context);
-                Router.changePage(context, TabPages());
-              },
-            ),
-            ListTile(
-                leading: Icon(Icons.info_outline),
-                title: Text('About'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Router.changePages(context, InfoPages());
-                }),
-          ],
-        ),
-      ),
+      drawer: drawer(context),
       body: Center(child: PostingPages()),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10.0),
@@ -60,6 +28,42 @@ class _HomePagesState extends State<HomePages> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Drawer drawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Center(child: Image.asset('assets/images/logo-copy.png')),
+            decoration: BoxDecoration(color: Colors.purple[50]),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.timer),
+            title: Text('Timer'),
+            onTap: () {
+              Navigator.pop(context);
+              Router.changePage(context, TabPages());
+            },
+          ),
+          ListTile(
+              leading: Icon(Icons.info_outline),
+              title: Text('About'),
+              onTap: () {
+                Navigator.pop(context);
+                Router.changePages(context, InfoPages());
+              }),
+        ],
+      ),
     );
   }
 }

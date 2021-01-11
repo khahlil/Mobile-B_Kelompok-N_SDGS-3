@@ -1,7 +1,7 @@
+import 'package:e_Masker/models/m_posting.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:e_Masker/models/m_posting.dart';
 
 class PostingProvider extends ChangeNotifier {
   List<PostingModel> _data = [];

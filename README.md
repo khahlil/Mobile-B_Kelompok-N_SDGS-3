@@ -24,10 +24,11 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 
 ## Progress
 
-1. Pembuatan Boarding Screen, Welcome Screen, dan Halaman Home.
+1. Pembuatan Boarding Screen, Welcome Screen, Halaman Home, dan global style.
 2. Pembuatan Route, Model, Halaman Detail, Halaman Info, dan Launcher Icons.
-3. Pembuatan Input masker, Timer history, Timer count.
-<!-- 4. Penambahan Animation. -->
+3. Pembuatan Input masker, Timer history, Timer count, dan Animation timer.
+4. Implement provider, shared preference, http request, dan sqflite.
+5. Final with bug.
 
 ## Progress UTS
 

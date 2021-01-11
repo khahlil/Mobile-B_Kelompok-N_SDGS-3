@@ -1,3 +1,4 @@
+import 'package:e_Masker/controls/sharedPref.dart';
 import 'package:e_Masker/pages/addMasker.dart';
 import 'package:e_Masker/pages/history.dart';
 import 'package:e_Masker/pages/timer.dart';
@@ -34,6 +35,7 @@ class TabPagesState extends State<TabPages>
   @override
   void initState() {
     _controller = TabController(length: 3, vsync: this);
+    getFuture();
     super.initState();
   }
 
@@ -46,6 +48,7 @@ class TabPagesState extends State<TabPages>
   changedTotal(int text) {
     setState(() {
       updateTotal += text;
+      setFuture();
     });
   }
 
@@ -53,6 +56,17 @@ class TabPagesState extends State<TabPages>
     setState(() {
       updateHistory = text;
     });
+  }
+
+  setFuture() async {
+    await SharedPreferencesHelper.getInstance();
+    SharedPreferencesHelper.putInt("totalMasker", updateTotal);
+  }
+
+  getFuture() async {
+    await SharedPreferencesHelper.getInstance();
+    var a = SharedPreferencesHelper.getInt("totalMasker");
+    updateTotal = a;
   }
 
   @override

@@ -1,6 +1,8 @@
-import 'dart:async';
+import 'package:e_Masker/controls/sharedPref.dart';
 import 'package:e_Masker/pages/home.dart';
+import 'package:e_Masker/pages/openingscreen.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class WelcomePages extends StatefulWidget {
   @override
@@ -14,12 +16,26 @@ class _WelcomePagesState extends State<WelcomePages> {
   }
 
   startLaunching() async {
-    var duration = const Duration(seconds: 1);
+    var duration = const Duration(seconds: 2);
     return new Timer(duration, () {
+      home();
+    });
+  }
+
+  home() async {
+    await SharedPreferencesHelper.getInstance();
+    var a = SharedPreferencesHelper.getInt("skipPage");
+    a == null ? a = 0 : a = a;
+    if (a == 1) {
       Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
         return HomePages();
       }));
-    });
+    } else {
+      SharedPreferencesHelper.putInt("skipPage", 1);
+      Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (_) {
+        return OpeningPages();
+      }));
+    }
   }
 
   @override
