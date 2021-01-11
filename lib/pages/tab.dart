@@ -34,7 +34,7 @@ class _TabPagesState extends State<TabPages> {
             children: [
               TimerHistoryPages(),
               TimerCountPages(),
-              TimerPages(),
+              Timer(),
             ],
           ),
         ),
