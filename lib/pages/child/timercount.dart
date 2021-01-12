@@ -68,11 +68,11 @@ class TimerCountState extends State<TimerCount> {
     history != null ? countHistory = history : countHistory = 0;
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Container(
-          height: 250.0,
-          width: 250.0,
+          height: 190.0,
+          width: 190.0,
           child: TimerClock(widget.timerProvider),
         ),
         Row(
@@ -103,8 +103,8 @@ class TimerCountState extends State<TimerCount> {
         setState(() {
           if (widget.timerProvider.stopwatch.isRunning) {
             widget.timerProvider.stopwatch.stop();
-            var lap = widget.timerProvider.msToString(
-                widget.timerProvider.stopwatch.elapsedMilliseconds);
+            var lap = widget.timerProvider
+                .msToString(widget.timerProvider.stopwatch.elapsedMilliseconds);
             simpan(lap);
             widget.timerProvider.stopwatch.reset();
             final controller = TabProvider.of(context).tabController;
