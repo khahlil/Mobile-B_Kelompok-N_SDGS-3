@@ -32,7 +32,7 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 
 ## Class Diagram
 
-<a href="https://ibb.co/ZMXF3fd"><img src="https://i.ibb.co/6WwT2yY/e-Masker-diagram.png" alt="e-Masker-diagram" border="0"></a>
+[![e-Masker-diagram.png](https://i.postimg.cc/Bn8zkLzB/e-Masker-diagram.png)](https://postimg.cc/v4sX6Bb4)
 
 ## Progress UTS
 
