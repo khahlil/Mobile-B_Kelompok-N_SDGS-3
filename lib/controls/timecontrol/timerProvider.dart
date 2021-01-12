@@ -1,12 +1,9 @@
-
 import 'package:e_Masker/controls/timecontrol/curent_time.dart';
 
-class Dependencies {
+class TimerProvider {
   final Stopwatch stopwatch = new Stopwatch();
 
-  final List<String> savedTimeList = List<String>();
-
-  transformMilliSecondsToString(int milliseconds) {
+  msToString(int milliseconds) {
     int hundreds = (milliseconds / 10).truncate();
     int seconds = (hundreds / 100).truncate();
     int minutes = (seconds / 60).truncate();
@@ -20,7 +17,7 @@ class Dependencies {
     return '$hoursStr : $minutesStr : $secondsStr.$hundredsStr';
   }
 
-  transformMilliSecondsToTime(int milliseconds) {
+  msToTime(int milliseconds) {
     int hundreds = (milliseconds / 10).truncate();
     int seconds = (hundreds / 100).truncate();
     int minutes = (seconds / 60).truncate();

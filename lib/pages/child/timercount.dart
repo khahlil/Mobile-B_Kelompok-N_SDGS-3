@@ -1,4 +1,4 @@
-import 'package:e_Masker/controls/timecontrol/dependencies.dart';
+import 'package:e_Masker/controls/timecontrol/timerProvider.dart';
 import 'package:e_Masker/pages/child/part/timer_clock.dart';
 import 'package:e_Masker/controls/tabcontroller.dart';
 import 'package:e_Masker/controls/db_history.dart';
@@ -8,11 +8,11 @@ import 'package:intl/intl.dart';
 import 'dart:async';
 
 class TimerCount extends StatefulWidget {
-  final Dependencies dependencies;
+  final TimerProvider timerProvider;
   final int total;
   final int history;
 
-  TimerCount({Key key, this.dependencies, this.total, this.history})
+  TimerCount({Key key, this.timerProvider, this.total, this.history})
       : super(key: key);
 
   TimerCountState createState() => TimerCountState();
@@ -29,7 +29,7 @@ class TimerCountState extends State<TimerCount> {
   var date = new DateTime.now();
 
   updateTime(Timer timer) {
-    if (widget.dependencies.stopwatch.isRunning) {
+    if (widget.timerProvider.stopwatch.isRunning) {
       setState(() {});
     } else {
       timer.cancel();
@@ -38,7 +38,7 @@ class TimerCountState extends State<TimerCount> {
 
   @override
   void initState() {
-    if (widget.dependencies.stopwatch.isRunning) {
+    if (widget.timerProvider.stopwatch.isRunning) {
       timer = new Timer.periodic(new Duration(milliseconds: 20), updateTime);
       leftButtonIcon = Icon(Icons.stop);
       leftButtonColor = Colors.red;
@@ -74,7 +74,7 @@ class TimerCountState extends State<TimerCount> {
         Container(
           height: 250.0,
           width: 250.0,
-          child: TimerClock(widget.dependencies),
+          child: TimerClock(widget.timerProvider),
         ),
         SizedBox(height: 220.0),
         Row(
@@ -98,17 +98,17 @@ class TimerCountState extends State<TimerCount> {
     if (countMasker - countHistory <= 0)
       showMaterialDialog();
     else {
-      if (widget.dependencies.stopwatch.isRunning) {
+      if (widget.timerProvider.stopwatch.isRunning) {
         leftButtonIcon = Icon(Icons.play_arrow);
         leftButtonColor = Colors.green;
         leftButtonText = Text('START');
         setState(() {
-          if (widget.dependencies.stopwatch.isRunning) {
-            widget.dependencies.stopwatch.stop();
-            var lap = widget.dependencies.transformMilliSecondsToString(
-                widget.dependencies.stopwatch.elapsedMilliseconds);
+          if (widget.timerProvider.stopwatch.isRunning) {
+            widget.timerProvider.stopwatch.stop();
+            var lap = widget.timerProvider.msToString(
+                widget.timerProvider.stopwatch.elapsedMilliseconds);
             simpan(lap);
-            widget.dependencies.stopwatch.reset();
+            widget.timerProvider.stopwatch.reset();
             final controller = TabProvider.of(context).tabController;
             controller.index = 0;
           }
@@ -117,7 +117,7 @@ class TimerCountState extends State<TimerCount> {
         leftButtonIcon = Icon(Icons.pause);
         leftButtonColor = Colors.red;
         leftButtonText = Text('STOP');
-        widget.dependencies.stopwatch.start();
+        widget.timerProvider.stopwatch.start();
         timer = new Timer.periodic(new Duration(milliseconds: 20), updateTime);
       }
     }

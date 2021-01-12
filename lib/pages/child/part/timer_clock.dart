@@ -1,12 +1,12 @@
 import 'package:e_Masker/controls/timecontrol/clock_painter.dart';
-import 'package:e_Masker/controls/timecontrol/dependencies.dart';
+import 'package:e_Masker/controls/timecontrol/timerProvider.dart';
 import 'package:e_Masker/controls/timecontrol/curent_time.dart';
 import 'package:flutter/material.dart';
 
 class TimerClock extends StatefulWidget {
-  final Dependencies dependencies;
+  final TimerProvider timerProvider;
 
-  TimerClock(this.dependencies, {Key key}) : super(key: key);
+  TimerClock(this.timerProvider, {Key key}) : super(key: key);
 
   TimerClockState createState() => TimerClockState();
 }
@@ -29,8 +29,8 @@ class TimerClockState extends State<TimerClock> {
 
   @override
   Widget build(BuildContext context) {
-    currentTime = widget.dependencies.transformMilliSecondsToTime(
-        widget.dependencies.stopwatch.elapsedMilliseconds);
+    currentTime = widget.timerProvider.msToTime(
+        widget.timerProvider.stopwatch.elapsedMilliseconds);
 
     return CustomPaint(
       painter: ClockPainter(

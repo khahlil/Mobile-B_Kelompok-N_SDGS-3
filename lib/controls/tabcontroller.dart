@@ -45,10 +45,16 @@ class TabPagesState extends State<TabPages>
     super.dispose();
   }
 
+  resetTotal(int text) {
+    setState(() {
+      setFuture(text);
+    });
+  }
+
   changedTotal(int text) {
     setState(() {
       updateTotal += text;
-      setFuture();
+      setFuture(updateTotal);
     });
   }
 
@@ -58,9 +64,9 @@ class TabPagesState extends State<TabPages>
     });
   }
 
-  setFuture() async {
+  setFuture(int value) async {
     await SharedPreferencesHelper.getInstance();
-    SharedPreferencesHelper.putInt("totalMasker", updateTotal);
+    SharedPreferencesHelper.putInt("totalMasker", value);
   }
 
   getFuture() async {
@@ -80,7 +86,7 @@ class TabPagesState extends State<TabPages>
         child: TabBarView(
           controller: _controller,
           children: [
-            HistoryPages(changeHistory: changedHistory),
+            HistoryPages(changeHistory: changedHistory, resetTotal: resetTotal),
             AddMaskerPages(changeTotal: changedTotal),
             TimerPages()
           ],

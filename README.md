@@ -28,7 +28,11 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 2. Pembuatan Route, Model, Halaman Detail, Halaman Info, dan Launcher Icons.
 3. Pembuatan Input masker, Timer history, Timer count, dan Animation timer.
 4. Implement provider, shared preference, http request, dan sqflite.
-5. Final with bug.
+5. Final.
+
+## Class Diagram
+
+[![e-Masker-diagram.png](https://i.postimg.cc/FswpfPP0/e-Masker-diagram.png)](https://postimg.cc/dLmrp9c0)
 
 ## Progress UTS
 
