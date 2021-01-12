@@ -1,5 +1,4 @@
 import 'package:e_Masker/controls/tabcontroller.dart';
-import 'package:e_Masker/controls/sharedPref.dart';
 import 'package:e_Masker/controls/db_history.dart';
 import 'package:e_Masker/models/m_history.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -7,11 +6,10 @@ import 'package:flutter/material.dart';
 
 class HistoryPages extends StatefulWidget {
   final int total;
-  final ValueChanged<int> changeTotal;
+  final ValueChanged<int> resetTotal;
   final ValueChanged<int> changeHistory;
 
-  const HistoryPages(
-      {Key key, this.total, this.changeTotal, this.changeHistory})
+  const HistoryPages({Key key, this.total, this.changeHistory, this.resetTotal})
       : super(key: key);
 
   @override
@@ -197,10 +195,9 @@ class HistoryPagesState extends State<HistoryPages> {
   }
 
   void reset() async {
-    await SharedPreferencesHelper.getInstance();
-    SharedPreferencesHelper.putInt("totalMasker", 0);
     await dbHistory.dropDb();
     updateListHistory();
+    widget.resetTotal(0);
     countMasker = 0;
   }
 
