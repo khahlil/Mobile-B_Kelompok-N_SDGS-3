@@ -29,8 +29,8 @@ class TimerClockState extends State<TimerClock> {
 
   @override
   Widget build(BuildContext context) {
-    currentTime = widget.timerProvider.msToTime(
-        widget.timerProvider.stopwatch.elapsedMilliseconds);
+    currentTime = widget.timerProvider
+        .msToTime(widget.timerProvider.stopwatch.elapsedMilliseconds);
 
     return CustomPaint(
       painter: ClockPainter(
@@ -51,11 +51,11 @@ class TimerClockState extends State<TimerClock> {
           children: <Widget>[
             Text(
               currentTime.hours.toString().padLeft(2, '0'),
-              style: TextStyle(fontSize: 36.0),
+              style: TextStyle(fontSize: 26.0),
             ),
             Text(
               '${currentTime.minutes.toString().padLeft(2, '0')} : ${currentTime.seconds.toString().padLeft(2, '0')}',
-              style: TextStyle(fontSize: 48.0),
+              style: TextStyle(fontSize: 35.0),
             ),
             Text(
               currentTime.hundreds.toString().padLeft(2, '0'),

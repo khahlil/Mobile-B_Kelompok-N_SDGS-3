@@ -27,27 +27,35 @@ class _AddMaskerPagesState extends State<AddMaskerPages> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          judul(),
-          SizedBox(height: 50.0),
-          Container(
-            child:
-                Text(expression, style: Theme.of(context).textTheme.subtitle1),
+    return ListView(
+      children: <Widget>[
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SizedBox(height: 30.0),
+              judul(),
+              SizedBox(height: 40.0),
+              Text(expression, style: Theme.of(context).textTheme.subtitle1),
+            ],
           ),
-          pemisah(),
-          SizedBox(height: 20.0),
-          tombol1(),
-          tombol2(),
-          tombol3(),
-          bawah(),
-          SizedBox(height: 40.0),
-          simpan(),
-          SizedBox(height: 20.0),
-        ],
-      ),
+        ),
+        Column(
+          children: [
+            pemisah(),
+            SizedBox(height: 20.0),
+            tombol1(),
+            SizedBox(height: 20.0),
+            tombol2(),
+            SizedBox(height: 20.0),
+            tombol3(),
+            SizedBox(height: 20.0),
+            bawah(),
+            SizedBox(height: 20.0),
+            simpan(),
+          ],
+        ),
+      ],
     );
   }
 

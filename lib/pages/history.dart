@@ -21,7 +21,6 @@ class HistoryPagesState extends State<HistoryPages> {
   List<History> historyList;
   int countHistory = 0;
   int countMasker = 0;
-  String button = 'Masukkan Total Masker';
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,10 @@ class HistoryPagesState extends State<HistoryPages> {
               padding: EdgeInsets.all(10),
               children: <Widget>[
                 SingleChildScrollView(
-                  child: Container(child: expandPanel()),
+                  child: Center(
+                      child: countHistory == 0
+                          ? Text(countMasker != 0 ? 'Mulai hitung timer' : 'Masukkan total masker dahulu')
+                          : expandPanel()),
                 ),
               ],
             ),
@@ -57,7 +59,7 @@ class HistoryPagesState extends State<HistoryPages> {
       floatingActionButton: FloatingActionButton.extended(
         elevation: 2.0,
         icon: Icon(Icons.add),
-        label: countMasker != 0 ? Text('Mulai Timer') : Text(button),
+        label: Text(countMasker != 0 ? 'Mulai Timer' : 'Masukkan Total Masker'),
         onPressed: () async {
           final controller = TabProvider.of(context).tabController;
           if ((countMasker - countHistory) <= 0 && countHistory > 0) {

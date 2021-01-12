@@ -11,7 +11,7 @@ class TimerPages extends StatefulWidget {
 
 class _TimerPagesState extends State<TimerPages>
     with AutomaticKeepAliveClientMixin<TimerPages> {
-  final TimerProvider timerProvider= new TimerProvider();
+  final TimerProvider timerProvider = new TimerProvider();
 
   @override
   bool get wantKeepAlive => true;

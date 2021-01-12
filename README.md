@@ -30,6 +30,8 @@ Dengan demikian dapat membantu mengurangi tingat penyebaran virus.
 4. Implement provider, shared preference, http request, dan sqflite.
 5. Final.
 
+## [Link Build APK](https://drive.google.com/file/d/1ncZyisFmtEgaLGy3CoR5bcm4MU-RKXEn/view?usp=sharing)
+
 ## Class Diagram
 
 [![e-Masker-diagram.png](https://i.postimg.cc/FswpfPP0/e-Masker-diagram.png)](https://postimg.cc/dLmrp9c0)
