@@ -68,15 +68,13 @@ class TimerCountState extends State<TimerCount> {
     history != null ? countHistory = history : countHistory = 0;
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        SizedBox(height: 80.0),
         Container(
           height: 250.0,
           width: 250.0,
           child: TimerClock(widget.timerProvider),
         ),
-        SizedBox(height: 220.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
